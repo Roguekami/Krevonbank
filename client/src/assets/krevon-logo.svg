@@ -1,0 +1,25 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Shield/Crest -->
+  <path d="M256 32L44 100V256C44 380 135 480 256 512C377 480 468 380 468 256V100L256 32Z" fill="#0B1221"/>
+  
+  <!-- Outer Gold Border -->
+  <path d="M256 46L60 108.5V256C60 368.5 142.5 458 256 488C369.5 458 452 368.5 452 256V108.5L256 46Z" stroke="#D4AF37" stroke-width="12"/>
+  
+  <!-- Inner Gold Border -->
+  <path d="M256 70L84 126V256C84 355 155 435 256 462C357 435 428 355 428 256V126L256 70Z" stroke="#D4AF37" stroke-width="4" stroke-opacity="0.5"/>
+
+  <!-- The Letter 'K' -->
+  <!-- Vertical Stem -->
+  <rect x="180" y="140" width="40" height="250" fill="#D4AF37"/>
+  
+  <!-- Top Diagonal -->
+  <path d="M350 140L210 260V310L370 140H350Z" fill="#D4AF37"/>
+  <polygon points="210,250 250,220 340,140 380,140" fill="#D4AF37" />
+
+  <!-- Bottom Diagonal -->
+  <path d="M210 260L360 390H400L220 230V260Z" fill="#D4AF37"/>
+  <polygon points="220,240 260,270 360,390 320,390" fill="#D4AF37" />
+  
+  <!-- Central Diamond Accent -->
+  <rect x="230" y="240" width="30" height="30" transform="rotate(45 230 240)" fill="#F3D566"/>
+</svg>
