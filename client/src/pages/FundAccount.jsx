@@ -328,11 +328,19 @@ const FundAccount = () => {
                     </div>
                     <div>
                       <p className="text-xs text-gray-500 mb-1">Bank Name</p>
-                      <p className="text-white font-medium">Krevon International Bank PLC</p>
+                      <p className="text-white font-medium">{bankInstructions.bankName}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">Address</p>
+                      <p className="text-white font-medium">{bankInstructions.address}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">Postal Code</p>
+                      <p className="text-white font-medium">{bankInstructions.postalCode}</p>
                     </div>
                     <div className="pt-2 border-t border-white/5 flex items-center justify-between">
                       <div>
-                        <p className="text-xs text-gray-500 mb-1">IBAN / Account Number</p>
+                        <p className="text-xs text-gray-500 mb-1">IBAN</p>
                         <p className="text-[#D4AF37] font-mono font-medium">{bankInstructions.iban}</p>
                       </div>
                       <button onClick={() => handleCopy(bankInstructions.iban)} className="text-gray-400 hover:text-white p-2">
@@ -350,7 +358,7 @@ const FundAccount = () => {
                     </div>
                     <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 mt-4">
                       <p className="text-yellow-400/90 text-xs">
-                        Please include your Krevon account name in the transfer reference to expedite processing.
+                        This bank account accepts <strong>any currency</strong>. There is no need to specify USD or EUR only. Please ensure the transfer references your full name or account name.
                       </p>
                     </div>
                   </div>

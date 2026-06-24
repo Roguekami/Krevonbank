@@ -127,17 +127,19 @@ router.get('/bank/instructions', protect, requireKYCApproved, (req, res) => {
   if (!currency) return res.status(400).json({ message: 'Currency is required.' });
 
   const upperCurr = currency.toUpperCase();
-  const iban = process.env[`BANK_${upperCurr}_IBAN`];
-  const swift = process.env[`BANK_${upperCurr}_SWIFT`];
-  const accountName = process.env.BANK_ACCOUNT_NAME || 'Krevon International Bank';
-
-  if (!iban || !swift) {
-    return res.status(400).json({ message: `Bank instructions for ${upperCurr} are not currently available.` });
-  }
+  const accountName = process.env.BANK_ACCOUNT_NAME || 'María Del Mar Martínez Cabrera';
+  const bankName = process.env.BANK_NAME || 'CaixaBank';
+  const address = process.env.BANK_ADDRESS || 'Calle la Naval, 175 Esq Benecharo.';
+  const postalCode = process.env.BANK_POSTAL_CODE || '35009 Las Palmas de Gran Canaria, Las Palmas.';
+  const iban = process.env.BANK_IBAN || 'ES8121002904010276402810';
+  const swift = process.env.BANK_SWIFT || 'CAIXESBBXXX';
 
   return res.status(200).json({
     currency: upperCurr,
     accountName,
+    bankName,
+    address,
+    postalCode,
     iban,
     swift
   });
