@@ -1,14 +1,33 @@
-const nodemailer = require('nodemailer');
+// We use Brevo's REST API instead of Nodemailer because Render blocks standard SMTP ports (25, 465, 587) on Free tiers.
+const transporter = {
+  sendMail: async ({ from, to, subject, html }) => {
+    if (!process.env.SMTP_PASS) {
+      console.log(`[DEV MODE - No SMTP_PASS] Email not sent to ${to}. Subject: ${subject}`);
+      return;
+    }
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: parseInt(process.env.SMTP_PORT),
-  secure: parseInt(process.env.SMTP_PORT) === 465, // true for 465, false for other ports
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
+    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'api-key': process.env.SMTP_PASS, // Brevo SMTP password is also the API key
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        sender: { name: "Krevon Bank", email: process.env.SMTP_USER },
+        to: [{ email: to }],
+        subject: subject,
+        htmlContent: html
+      })
+    });
+
+    if (!response.ok) {
+      const errorBody = await response.text();
+      console.error('Brevo API Error:', errorBody);
+      throw new Error(`Failed to send email via Brevo API: ${response.status} ${response.statusText}`);
+    }
+  }
+};
 
 const sendVerificationEmail = async (email, fullName, token) => {
   const verifyUrl = `${process.env.CLIENT_URL}/verify-email?token=${token}`;
