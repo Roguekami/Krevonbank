@@ -279,7 +279,7 @@ const Transfers = () => {
   // ─── Wallet Cards (max 5 visible, horizontally scrollable, fade-right) ───
   const WalletCards = () => (
     <div className="mb-8">
-      <p className="text-xs uppercase tracking-widest text-gray-500 mb-3 font-semibold flex items-center gap-2">
+      <p className="text-xs uppercase tracking-widest text-gray-600 dark:text-gray-500 mb-3 font-semibold flex items-center gap-2">
         <Wallet size={13} /> Your Wallets
         {ratesAge && (
           <span className="ml-auto text-[10px] text-gray-600 normal-case tracking-normal font-normal">
@@ -412,9 +412,9 @@ const Transfers = () => {
                               </option>
                             ))}
                           </select>
-                          <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
+                          <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-500 pointer-events-none" />
                         </div>
-                        <p className="text-xs pl-1 text-gray-500">
+                        <p className="text-xs pl-1 text-gray-600 dark:text-gray-500">
                           Balance:{' '}
                           <span className={`font-semibold ${insufficient ? 'text-red-400' : 'text-gray-700 dark:text-gray-300'}`}>
                             {formatBalance(fromBalance, fromCurrency)}
@@ -451,9 +451,9 @@ const Transfers = () => {
                               </option>
                             ))}
                           </select>
-                          <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
+                          <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-500 pointer-events-none" />
                         </div>
-                        <p className="text-xs pl-1 text-gray-500">
+                        <p className="text-xs pl-1 text-gray-600 dark:text-gray-500">
                           Balance: <span className="font-semibold text-gray-700 dark:text-gray-300">{formatBalance(getBalance(toCurrency), toCurrency)}</span>
                         </p>
                       </div>
@@ -516,7 +516,7 @@ const Transfers = () => {
                             <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-widest flex items-center gap-1.5">
                               <TrendingUp size={13} className="text-[#D4AF37]" /> Live Preview
                             </span>
-                            <span className="text-xs text-gray-500 font-mono">
+                            <span className="text-xs text-gray-600 dark:text-gray-500 font-mono">
                               1 {fromCurrency} = {liveRate.toFixed(6)} {toCurrency}
                             </span>
                           </div>
@@ -550,7 +550,7 @@ const Transfers = () => {
                             ? 'bg-gradient-to-r from-[#D4AF37] to-[#F3D566] text-[#0B1221] shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]'
                             : internalSuccess
                             ? 'bg-green-500/20 border border-green-500/30 text-green-400'
-                            : 'bg-gray-700/50 text-gray-500 cursor-not-allowed'
+                            : 'bg-gray-700/50 text-gray-600 dark:text-gray-500 cursor-not-allowed'
                         }`}
                       >
                         <AnimatePresence mode="wait">
@@ -594,7 +594,7 @@ const Transfers = () => {
                           <option key={c} value={c}>{CURRENCY_FLAGS[c]} {c}</option>
                         ))}
                       </select>
-                      <ChevronDown size={13} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
+                      <ChevronDown size={13} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-500 pointer-events-none" />
                     </div>
                     <input
                       type="number" min="0.01" step="0.01" required
@@ -612,31 +612,31 @@ const Transfers = () => {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2 md:col-span-2">
-                      <label className="text-xs text-gray-500 font-medium block">Full Name / Company Name</label>
+                      <label className="text-xs text-gray-600 dark:text-gray-500 font-medium block">Full Name / Company Name</label>
                       <input type="text" required value={wireForm.recipientName}
                         onChange={e => setWireForm({ ...wireForm, recipientName: e.target.value })}
                         placeholder="John Doe" className={inputCls} />
                     </div>
                     <div className="space-y-2 md:col-span-2">
-                      <label className="text-xs text-gray-500 font-medium flex items-center gap-1"><Building2 size={12} /> Bank Name</label>
+                      <label className="text-xs text-gray-600 dark:text-gray-500 font-medium flex items-center gap-1"><Building2 size={12} /> Bank Name</label>
                       <input type="text" required value={wireForm.recipientBankName}
                         onChange={e => setWireForm({ ...wireForm, recipientBankName: e.target.value })}
                         placeholder="e.g. JPMorgan Chase" className={inputCls} />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-xs text-gray-500 font-medium block">Account Number</label>
+                      <label className="text-xs text-gray-600 dark:text-gray-500 font-medium block">Account Number</label>
                       <input type="text" required value={wireForm.recipientAccountNumber}
                         onChange={e => setWireForm({ ...wireForm, recipientAccountNumber: e.target.value })}
                         placeholder="Account Number" className={`${inputCls} font-mono`} />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-xs text-gray-500 font-medium block">SWIFT / IBAN Code</label>
+                      <label className="text-xs text-gray-600 dark:text-gray-500 font-medium block">SWIFT / IBAN Code</label>
                       <input type="text" required value={wireForm.recipientSwiftIban}
                         onChange={e => setWireForm({ ...wireForm, recipientSwiftIban: e.target.value.toUpperCase() })}
                         placeholder="SWIFT / IBAN" className={`${inputCls} font-mono uppercase`} />
                     </div>
                     <div className="space-y-2 md:col-span-2">
-                      <label className="text-xs text-gray-500 font-medium block">Description (optional)</label>
+                      <label className="text-xs text-gray-600 dark:text-gray-500 font-medium block">Description (optional)</label>
                       <input type="text" value={wireForm.description}
                         onChange={e => setWireForm({ ...wireForm, description: e.target.value })}
                         placeholder="Payment reference, invoice number..." className={inputCls} />
@@ -654,7 +654,7 @@ const Transfers = () => {
                       : <><Send size={20} /> Initiate Wire Transfer</>
                     }
                   </button>
-                  <p className="text-center text-xs text-gray-500 mt-3">
+                  <p className="text-center text-xs text-gray-600 dark:text-gray-500 mt-3">
                     Wire transfers are reviewed by our compliance team and may take 1–3 business days.
                   </p>
                 </div>

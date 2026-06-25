@@ -82,7 +82,7 @@ const AdminLayout = () => {
           </div>
           <div className="overflow-hidden">
             <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{user?.full_name}</p>
-            <p className="text-xs text-gray-500 truncate">Administrator</p>
+            <p className="text-xs text-gray-600 dark:text-gray-500 truncate">Administrator</p>
           </div>
         </div>
         <button
@@ -170,7 +170,7 @@ const AdminLayout = () => {
             </div>
             <div className="overflow-hidden">
               <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{user?.full_name}</p>
-              <p className="text-xs text-gray-500 truncate">Administrator</p>
+              <p className="text-xs text-gray-600 dark:text-gray-500 truncate">Administrator</p>
             </div>
           </div>
           <button

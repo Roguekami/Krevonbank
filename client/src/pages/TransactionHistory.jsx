@@ -122,7 +122,7 @@ const TransactionHistory = () => {
           <div className="flex flex-col md:flex-row gap-3 items-end bg-white dark:bg-[#152336] p-3 rounded-xl border border-gray-200 dark:border-gray-800">
             <div className="flex gap-2">
               <div>
-                <label className="block text-[10px] uppercase tracking-wider text-gray-500 mb-1">Start Date</label>
+                <label className="block text-[10px] uppercase tracking-wider text-gray-600 dark:text-gray-500 mb-1">Start Date</label>
                 <input 
                   type="date" 
                   value={exportStartDate}
@@ -131,7 +131,7 @@ const TransactionHistory = () => {
                 />
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-wider text-gray-500 mb-1">End Date</label>
+                <label className="block text-[10px] uppercase tracking-wider text-gray-600 dark:text-gray-500 mb-1">End Date</label>
                 <input 
                   type="date" 
                   value={exportEndDate}
@@ -158,7 +158,7 @@ const TransactionHistory = () => {
         {/* View Filters & Search */}
         <div className="bg-white dark:bg-[#152336] p-4 rounded-2xl border border-gray-200 dark:border-gray-800 flex flex-col md:flex-row gap-4 items-center justify-between relative">
           <div className="relative w-full md:w-96">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-500" size={18} />
             <input 
               type="text" 
               placeholder="Search by description, currency, status..." 
@@ -228,7 +228,7 @@ const TransactionHistory = () => {
                   
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-xs uppercase tracking-wider text-gray-500 mb-2">Status</label>
+                      <label className="block text-xs uppercase tracking-wider text-gray-600 dark:text-gray-500 mb-2">Status</label>
                       <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm focus:border-[#D4AF37] outline-none">
                         <option value="all">All Statuses</option>
                         <option value="completed">Completed</option>
@@ -237,7 +237,7 @@ const TransactionHistory = () => {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-xs uppercase tracking-wider text-gray-500 mb-2">Type</label>
+                      <label className="block text-xs uppercase tracking-wider text-gray-600 dark:text-gray-500 mb-2">Type</label>
                       <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm focus:border-[#D4AF37] outline-none">
                         <option value="all">All Types</option>
                         <option value="deposit">Deposit</option>
@@ -266,7 +266,7 @@ const TransactionHistory = () => {
               <div className="w-10 h-10 border-4 border-[#0B1221] border-t-[#D4AF37] rounded-full animate-spin"></div>
             </div>
           ) : filteredTransactions.length === 0 ? (
-            <div className="p-16 flex flex-col items-center justify-center text-gray-500">
+            <div className="p-16 flex flex-col items-center justify-center text-gray-600 dark:text-gray-500">
               <Calendar size={48} className="mb-4 text-gray-700" />
               <p className="text-lg font-medium text-gray-600 dark:text-gray-400">No transactions found</p>
               <p className="text-sm mt-1">Try adjusting your search or filters.</p>
@@ -301,7 +301,7 @@ const TransactionHistory = () => {
                             </div>
                             <div>
                               <p className="font-medium text-gray-200">{tx.description || tx.type || 'Transaction'}</p>
-                              {tx.reference && <p className="text-xs text-gray-500 font-mono mt-0.5">Ref: {tx.reference}</p>}
+                              {tx.reference && <p className="text-xs text-gray-600 dark:text-gray-500 font-mono mt-0.5">Ref: {tx.reference}</p>}
                             </div>
                           </div>
                         </td>

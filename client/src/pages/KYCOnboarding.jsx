@@ -86,7 +86,7 @@ const KYCOnboarding = () => {
                   flex items-center justify-center h-10 px-6 rounded-full border-2 text-sm font-semibold
                   ${idx < currentStep ? 'bg-white dark:bg-[#152336] border-[#152336] text-gray-600 dark:text-gray-400' : ''}
                   ${idx === currentStep ? 'bg-[#D4AF37] border-[#D4AF37] text-[#0B1221]' : ''}
-                  ${idx > currentStep ? 'border-[#152336] text-gray-500' : ''}
+                  ${idx > currentStep ? 'border-[#152336] text-gray-600 dark:text-gray-500' : ''}
                 `}>
                   {idx < currentStep && <CheckCircle className="w-4 h-4 mr-2" />}
                   {step}
@@ -173,7 +173,7 @@ const KYCOnboarding = () => {
                           Select File
                           <input type="file" className="hidden" accept=".jpg,.jpeg,.png,.pdf" onChange={(e) => handleFileChange(e, 'tier1')} />
                         </label>
-                        <p className="text-xs text-gray-500 mt-2">Max size 5MB. JPG, PNG, PDF.</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-500 mt-2">Max size 5MB. JPG, PNG, PDF.</p>
                       </div>
                       <div className="flex-1 pl-6 flex items-center justify-center">
                         {tier1Preview ? (
@@ -188,7 +188,7 @@ const KYCOnboarding = () => {
                           </div>
                         ) : (
                           <div className="w-32 h-24 bg-white/5 rounded-md flex items-center justify-center border border-white/5">
-                            <span className="text-xs text-gray-500">No file selected</span>
+                            <span className="text-xs text-gray-600 dark:text-gray-500">No file selected</span>
                           </div>
                         )}
                       </div>
@@ -229,7 +229,7 @@ const KYCOnboarding = () => {
                           </div>
                         ) : (
                           <div className="w-32 h-24 bg-white/5 rounded-md flex items-center justify-center border border-white/5">
-                            <span className="text-xs text-gray-500">No file selected</span>
+                            <span className="text-xs text-gray-600 dark:text-gray-500">No file selected</span>
                           </div>
                         )}
                       </div>

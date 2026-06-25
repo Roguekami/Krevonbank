@@ -323,24 +323,24 @@ const FundAccount = () => {
                 ) : bankInstructions ? (
                   <div className="bg-gray-50 dark:bg-[#0B1221] rounded-xl p-5 border border-gray-200 dark:border-white/10 space-y-4">
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">Beneficiary Name</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-500 mb-1">Beneficiary Name</p>
                       <p className="text-gray-900 dark:text-white font-medium">{bankInstructions.accountName}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">Bank Name</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-500 mb-1">Bank Name</p>
                       <p className="text-gray-900 dark:text-white font-medium">{bankInstructions.bankName}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">Address</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-500 mb-1">Address</p>
                       <p className="text-gray-900 dark:text-white font-medium">{bankInstructions.address}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">Postal Code</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-500 mb-1">Postal Code</p>
                       <p className="text-gray-900 dark:text-white font-medium">{bankInstructions.postalCode}</p>
                     </div>
                     <div className="pt-2 border-t border-white/5 flex items-center justify-between">
                       <div>
-                        <p className="text-xs text-gray-500 mb-1">IBAN</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-500 mb-1">IBAN</p>
                         <p className="text-[#D4AF37] font-mono font-medium">{bankInstructions.iban}</p>
                       </div>
                       <button onClick={() => handleCopy(bankInstructions.iban)} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white p-2">
@@ -349,7 +349,7 @@ const FundAccount = () => {
                     </div>
                     <div className="pt-2 border-t border-white/5 flex items-center justify-between">
                       <div>
-                        <p className="text-xs text-gray-500 mb-1">SWIFT / BIC Code</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-500 mb-1">SWIFT / BIC Code</p>
                         <p className="text-[#D4AF37] font-mono font-medium">{bankInstructions.swift}</p>
                       </div>
                       <button onClick={() => handleCopy(bankInstructions.swift)} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white p-2">
@@ -363,7 +363,7 @@ const FundAccount = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center text-gray-500 py-6 text-sm">
+                  <div className="text-center text-gray-600 dark:text-gray-500 py-6 text-sm">
                     Bank instructions are currently unavailable for {selectedFiat}.
                   </div>
                 )}

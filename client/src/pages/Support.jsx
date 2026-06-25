@@ -185,7 +185,7 @@ const Support = () => {
                     <button type="submit" disabled={isSubmitting} className="w-full bg-brand-gold text-brand-navy font-bold py-3.5 rounded-md hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all disabled:opacity-70 disabled:cursor-not-allowed">
                       {isSubmitting ? 'Sending...' : 'Send Message'}
                     </button>
-                    <p className="text-xs text-center text-gray-500 mt-4">We typically respond within 2 to 4 business hours.</p>
+                    <p className="text-xs text-center text-gray-600 dark:text-gray-500 mt-4">We typically respond within 2 to 4 business hours.</p>
                   </form>
                 )}
               </div>

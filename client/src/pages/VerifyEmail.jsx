@@ -60,7 +60,7 @@ const VerifyEmail = () => {
             </motion.div>
             <h2 className="text-2xl font-serif text-gray-900 dark:text-white mb-2">Email Verified!</h2>
             <p className="text-gray-600 dark:text-gray-400 mb-6">{message}</p>
-            <p className="text-sm text-gray-500">Redirecting to Identity Verification...</p>
+            <p className="text-sm text-gray-600 dark:text-gray-500">Redirecting to Identity Verification...</p>
           </div>
         )}
 

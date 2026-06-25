@@ -410,7 +410,7 @@ const Cards = () => {
                         </div>
                         <span className="text-gray-200 text-sm font-medium">{card.status === 'frozen' ? 'Unfreeze Card' : 'Freeze Card'}</span>
                       </div>
-                      {actionLoading === card.id ? <Loader2 size={16} className="animate-spin text-gray-500" /> : <ChevronRight size={16} className="text-gray-500 group-hover:text-gray-900 dark:text-white transition-colors" />}
+                      {actionLoading === card.id ? <Loader2 size={16} className="animate-spin text-gray-600 dark:text-gray-500" /> : <ChevronRight size={16} className="text-gray-500 group-hover:text-gray-900 dark:text-white transition-colors" />}
                     </button>
 
                     <button

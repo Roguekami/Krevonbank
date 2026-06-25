@@ -43,7 +43,7 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="pt-8 border-t border-gray-200 dark:border-white/10 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500">
+        <div className="pt-8 border-t border-gray-200 dark:border-white/10 flex flex-col md:flex-row items-center justify-between text-xs text-gray-600 dark:text-gray-500">
           <p>&copy; {new Date().getFullYear()} Krevon Ltd. All rights reserved. Authorized and regulated by the Financial Conduct Authority.</p>
           <div className="flex items-center gap-4 mt-4 md:mt-0">
             {/* Social Icons would go here */}

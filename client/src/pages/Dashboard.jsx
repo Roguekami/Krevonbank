@@ -204,7 +204,7 @@ const Dashboard = () => {
                     </div>
                     <div>
                       <p className="font-medium text-gray-200">{tx.description || tx.type || 'Transaction'}</p>
-                      <p className="text-xs text-gray-500">{new Date(tx.created_at || tx.createdAt).toLocaleDateString()}</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-500">{new Date(tx.created_at || tx.createdAt).toLocaleDateString()}</p>
                     </div>
                   </div>
                   <div className={`font-mono font-medium ${tx.type === 'deposit' || tx.amount > 0 || tx.type === 'bank_funding' ? 'text-green-500' : 'text-gray-900 dark:text-white'}`}>
@@ -213,7 +213,7 @@ const Dashboard = () => {
                 </div>
               ))
             ) : (
-              <div className="text-center py-8 text-gray-500 bg-gray-50 dark:bg-[#0B1221] rounded-xl">
+              <div className="text-center py-8 text-gray-600 dark:text-gray-500 bg-gray-50 dark:bg-[#0B1221] rounded-xl">
                 No recent transactions
               </div>
             )}
@@ -251,12 +251,12 @@ const Dashboard = () => {
                   >
                     <div className="text-[#D4AF37] font-bold text-lg mb-1 group-hover:text-[#F3D566] transition-colors">{c.symbol}</div>
                     <div className="text-sm font-medium text-gray-900 dark:text-white">{c.code}</div>
-                    <div className="text-xs text-gray-500">{c.name}</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-500">{c.name}</div>
                   </button>
                 ))
               }
               {AVAILABLE_CURRENCIES.filter(c => !account?.balances?.some(b => b.currency_code === c.code)).length === 0 && (
-                <div className="col-span-full text-center py-8 text-gray-500">
+                <div className="col-span-full text-center py-8 text-gray-600 dark:text-gray-500">
                   You already have wallets for all available currencies.
                 </div>
               )}

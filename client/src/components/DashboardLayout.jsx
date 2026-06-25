@@ -131,7 +131,7 @@ const DashboardLayout = () => {
           </div>
           <div className="overflow-hidden">
             <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{user?.full_name}</p>
-            <p className="text-xs text-gray-500 truncate">{user?.email}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-500 truncate">{user?.email}</p>
           </div>
         </div>
         <button

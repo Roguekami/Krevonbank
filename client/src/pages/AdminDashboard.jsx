@@ -401,7 +401,7 @@ const AdminDashboard = ({ tab }) => {
               {activeTab === 'kyc' && (
                 <div className="space-y-4">
                   {kycData.length === 0 ? (
-                    <p className="text-center text-gray-500 py-12">No pending KYC applications.</p>
+                    <p className="text-center text-gray-600 dark:text-gray-500 py-12">No pending KYC applications.</p>
                   ) : (
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse">
@@ -418,7 +418,7 @@ const AdminDashboard = ({ tab }) => {
                             <tr key={item.id} className="hover:bg-white/[0.02] transition-colors">
                               <td className="p-4">
                                 <div className="font-medium text-gray-900 dark:text-white">{item.full_name || 'Unknown User'}</div>
-                                <div className="text-xs text-gray-500">{item.email || ''}</div>
+                                <div className="text-xs text-gray-600 dark:text-gray-500">{item.email || ''}</div>
                               </td>
                               <td className="p-4">
                                 <div className="text-gray-700 dark:text-gray-300 text-sm mb-1">{item.tier1_doc_type || 'Passport'}</div>
@@ -467,7 +467,7 @@ const AdminDashboard = ({ tab }) => {
               {activeTab === 'transfers' && (
                 <div className="space-y-4">
                   {transfersData.length === 0 ? (
-                    <p className="text-center text-gray-500 py-12">No pending wire transfers.</p>
+                    <p className="text-center text-gray-600 dark:text-gray-500 py-12">No pending wire transfers.</p>
                   ) : (
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse">
@@ -487,7 +487,7 @@ const AdminDashboard = ({ tab }) => {
                               </td>
                               <td className="p-4">
                                 <div className="text-gray-700 dark:text-gray-300">{item.recipient_name || 'Unknown Bank'}</div>
-                                <div className="text-xs text-gray-500 font-mono">{item.recipient_account_number}</div>
+                                <div className="text-xs text-gray-600 dark:text-gray-500 font-mono">{item.recipient_account_number}</div>
                               </td>
                               <td className="p-4 font-mono text-[#D4AF37] font-medium">
                                 ${parseFloat(item.amount).toLocaleString(undefined, {minimumFractionDigits: 2})}
@@ -525,7 +525,7 @@ const AdminDashboard = ({ tab }) => {
                   {/* Search & Filter Bar */}
                   <div className="flex flex-col md:flex-row gap-3 items-start md:items-center">
                     <div className="relative flex-1 w-full">
-                      <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                      <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-500" />
                       <input
                         type="text"
                         value={txSearchQuery}
@@ -557,13 +557,13 @@ const AdminDashboard = ({ tab }) => {
                       <option value="deposit">Deposit</option>
                       <option value="bank_funding">Bank Funding</option>
                     </select>
-                    <span className="text-xs text-gray-500 whitespace-nowrap">
+                    <span className="text-xs text-gray-600 dark:text-gray-500 whitespace-nowrap">
                       {filteredHistory.length} of {historyData.length} transactions
                     </span>
                   </div>
 
                   {filteredHistory.length === 0 ? (
-                    <p className="text-center text-gray-500 py-12">{txSearchQuery || txStatusFilter !== 'all' || txTypeFilter !== 'all' ? 'No transactions match your filters.' : 'No transactions found.'}</p>
+                    <p className="text-center text-gray-600 dark:text-gray-500 py-12">{txSearchQuery || txStatusFilter !== 'all' || txTypeFilter !== 'all' ? 'No transactions match your filters.' : 'No transactions found.'}</p>
                   ) : (
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse">
@@ -589,13 +589,13 @@ const AdminDashboard = ({ tab }) => {
                               </td>
                               <td className="p-4">
                                 <div className="font-medium text-gray-900 dark:text-white">{item.sender_name || 'System / External'}</div>
-                                {item.sender_email && <div className="text-xs text-gray-500">{item.sender_email}</div>}
+                                {item.sender_email && <div className="text-xs text-gray-600 dark:text-gray-500">{item.sender_email}</div>}
                               </td>
                               <td className="p-4">
                                 <div className="text-gray-700 dark:text-gray-300 text-sm max-w-[200px] truncate" title={item.description || item.recipient_name}>
                                   {item.recipient_name || item.description || '-'}
                                 </div>
-                                {item.recipient_account_number && <div className="text-xs text-gray-500 font-mono">{item.recipient_account_number}</div>}
+                                {item.recipient_account_number && <div className="text-xs text-gray-600 dark:text-gray-500 font-mono">{item.recipient_account_number}</div>}
                               </td>
                               <td className="p-4 whitespace-nowrap">
                                 <span className="text-xs font-medium px-2.5 py-1 bg-gray-50 dark:bg-[#0B1221] text-gray-700 dark:text-gray-300 rounded-md border border-gray-700 capitalize">
@@ -637,7 +637,7 @@ const AdminDashboard = ({ tab }) => {
               {activeTab === 'users' && (
                 <div className="space-y-4">
                   {usersData.length === 0 ? (
-                    <p className="text-center text-gray-500 py-12">No users found.</p>
+                    <p className="text-center text-gray-600 dark:text-gray-500 py-12">No users found.</p>
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       {usersData.map((user) => (
@@ -649,7 +649,7 @@ const AdminDashboard = ({ tab }) => {
                               </div>
                               <div>
                                 <h3 className="font-semibold text-gray-900 dark:text-white">{user.full_name || 'User'}</h3>
-                                <p className="text-xs text-gray-500">{user.email}</p>
+                                <p className="text-xs text-gray-600 dark:text-gray-500">{user.email}</p>
                               </div>
                             </div>
                             <span className={`px-2 py-1 rounded text-xs font-medium ${
@@ -736,7 +736,7 @@ const AdminDashboard = ({ tab }) => {
                       Crypto Funding
                     </h3>
                     {fundingData.length === 0 ? (
-                      <p className="text-center text-gray-500 py-6 bg-gray-50 dark:bg-[#0B1221] rounded-xl border border-white/5">No crypto funding requests.</p>
+                      <p className="text-center text-gray-600 dark:text-gray-500 py-6 bg-gray-50 dark:bg-[#0B1221] rounded-xl border border-white/5">No crypto funding requests.</p>
                     ) : (
                       <div className="overflow-x-auto bg-gray-50 dark:bg-[#0B1221] rounded-xl border border-white/5">
                         <table className="w-full text-left border-collapse">
@@ -756,7 +756,7 @@ const AdminDashboard = ({ tab }) => {
                               <tr key={item.id} className="hover:bg-white/[0.02] transition-colors">
                                 <td className="p-4">
                                   <div className="font-medium text-gray-900 dark:text-white">{item.full_name}</div>
-                                  <div className="text-xs text-gray-500">{item.email}</div>
+                                  <div className="text-xs text-gray-600 dark:text-gray-500">{item.email}</div>
                                   {item.account_id && (
                                     <button
                                       onClick={() => openCreditModal({ id: item.account_id, full_name: item.full_name })}
@@ -851,7 +851,7 @@ const AdminDashboard = ({ tab }) => {
                       Bank Wires
                     </h3>
                     {bankFundingData.length === 0 ? (
-                      <p className="text-center text-gray-500 py-6 bg-gray-50 dark:bg-[#0B1221] rounded-xl border border-white/5">No bank wire requests.</p>
+                      <p className="text-center text-gray-600 dark:text-gray-500 py-6 bg-gray-50 dark:bg-[#0B1221] rounded-xl border border-white/5">No bank wire requests.</p>
                     ) : (
                       <div className="overflow-x-auto bg-gray-50 dark:bg-[#0B1221] rounded-xl border border-white/5">
                         <table className="w-full text-left border-collapse">
@@ -870,7 +870,7 @@ const AdminDashboard = ({ tab }) => {
                               <tr key={item.id} className="hover:bg-white/[0.02] transition-colors">
                                 <td className="p-4">
                                   <div className="font-medium text-gray-900 dark:text-white">{item.full_name}</div>
-                                  <div className="text-xs text-gray-500">{item.email}</div>
+                                  <div className="text-xs text-gray-600 dark:text-gray-500">{item.email}</div>
                                   {item.account_id && (
                                     <button
                                       onClick={() => openCreditModal({ id: item.account_id, full_name: item.full_name })}
@@ -882,7 +882,7 @@ const AdminDashboard = ({ tab }) => {
                                 </td>
                                 <td className="p-4">
                                   <div className="font-medium text-gray-700 dark:text-gray-300">{item.sender_bank}</div>
-                                  <div className="text-xs text-gray-500">{item.sender_name}</div>
+                                  <div className="text-xs text-gray-600 dark:text-gray-500">{item.sender_name}</div>
                                 </td>
                                 <td className="p-4 font-mono text-xs text-gray-600 dark:text-gray-400">{item.reference_code}</td>
                                 <td className="p-4">
@@ -952,7 +952,7 @@ const AdminDashboard = ({ tab }) => {
               {activeTab === 'cards' && (
                 <div className="space-y-4">
                   {cardsData.length === 0 ? (
-                    <p className="text-center text-gray-500 py-12">No pending physical card requests.</p>
+                    <p className="text-center text-gray-600 dark:text-gray-500 py-12">No pending physical card requests.</p>
                   ) : (
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse">
@@ -970,11 +970,11 @@ const AdminDashboard = ({ tab }) => {
                             <tr key={item.id} className="hover:bg-white/[0.02] transition-colors">
                               <td className="p-4">
                                 <div className="font-medium text-gray-900 dark:text-white">{item.full_name}</div>
-                                <div className="text-xs text-gray-500">{item.email}</div>
+                                <div className="text-xs text-gray-600 dark:text-gray-500">{item.email}</div>
                               </td>
                               <td className="p-4">
                                 <div className="text-gray-700 dark:text-gray-300 text-sm mb-1">{item.card_number_masked}</div>
-                                <div className="text-xs text-gray-500">Exp: {item.expiry_date}</div>
+                                <div className="text-xs text-gray-600 dark:text-gray-500">Exp: {item.expiry_date}</div>
                               </td>
                               <td className="p-4">
                                 <div className="text-gray-900 dark:text-white text-sm">{item.delivery_name} <span className="text-gray-500">({item.delivery_phone})</span></div>
@@ -989,7 +989,7 @@ const AdminDashboard = ({ tab }) => {
                                   {item.status.toUpperCase()}
                                 </span>
                                 {item.tracking_number && (
-                                  <div className="text-xs text-gray-500 mt-1">Tracking: {item.tracking_number}</div>
+                                  <div className="text-xs text-gray-600 dark:text-gray-500 mt-1">Tracking: {item.tracking_number}</div>
                                 )}
                               </td>
                               <td className="p-4 text-right">
