@@ -15,15 +15,17 @@ const { v4: uuidv4 } = require('uuid');
 const { createSession, deactivateSessionByJti } = require('../models/Session');
 
 
+const cookieOptions = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+  maxAge: 24 * 60 * 60 * 1000,
+};
+
 const issueToken = async (req, res, userId) => {
   const jti = uuidv4();
   const token = jwt.sign({ id: userId, jti }, process.env.JWT_SECRET, { expiresIn: '24h' });
-  res.cookie('token', token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
-    maxAge: 24 * 60 * 60 * 1000,
-  });
+  res.cookie('token', token, cookieOptions);
   // Save session
   try {
     const device = req.headers['user-agent'] || 'Unknown';
@@ -259,7 +261,11 @@ router.post('/logout', async (req, res) => {
   } catch (err) {
     // Token might be expired, that's fine
   }
-  res.clearCookie('token');
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+  });
   return res.status(200).json({ message: 'Logged out successfully.' });
 });
 

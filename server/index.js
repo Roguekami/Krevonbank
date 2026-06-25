@@ -74,7 +74,7 @@ const {
   getSessionIdentifier: () => 'static-session-id', // Required in v4
   cookieName: 'x-csrf-token', // The name of the cookie to be used, recommend using Host prefix.
   cookieOptions: {
-    sameSite: 'strict',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
     path: '/',
     secure: process.env.NODE_ENV === 'production',
   },
