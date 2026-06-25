@@ -4,7 +4,12 @@ const { getSessionByJti, updateSessionActivity } = require('../models/Session');
 
 const protect = async (req, res, next) => {
   try {
-    const token = req.cookies.token;
+    // Accept token from Authorization header (mobile) or cookie (desktop)
+    let token = req.cookies.token;
+    const authHeader = req.headers.authorization;
+    if (!token && authHeader && authHeader.startsWith('Bearer ')) {
+      token = authHeader.split(' ')[1];
+    }
     if (!token) {
       return res.status(401).json({ message: 'Not authorised. Please log in.' });
     }

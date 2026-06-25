@@ -14,18 +14,39 @@ export const AuthProvider = ({ children }) => {
       return data;
     } catch (error) {
       setUser(null);
+      localStorage.removeItem('krevon_token');
       return null;
     } finally {
       setLoading(false);
     }
   };
 
+  // Login: store token + user directly (no follow-up /auth/me needed)
+  const loginUser = (token, userData) => {
+    if (token) {
+      localStorage.setItem('krevon_token', token);
+    }
+    setUser(userData);
+  };
+
+  // Logout: clear token from localStorage
+  const logoutUser = () => {
+    localStorage.removeItem('krevon_token');
+    setUser(null);
+  };
+
   useEffect(() => {
-    fetchUser();
+    // On mount, check if we have a stored token and verify it
+    const storedToken = localStorage.getItem('krevon_token');
+    if (storedToken) {
+      fetchUser();
+    } else {
+      setLoading(false);
+    }
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, fetchUser }}>
+    <AuthContext.Provider value={{ user, setUser, loading, fetchUser, loginUser, logoutUser }}>
       {children}
     </AuthContext.Provider>
   );

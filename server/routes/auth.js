@@ -25,6 +25,7 @@ const cookieOptions = {
 const issueToken = async (req, res, userId) => {
   const jti = uuidv4();
   const token = jwt.sign({ id: userId, jti }, process.env.JWT_SECRET, { expiresIn: '24h' });
+  // Set httpOnly cookie (works on desktop)
   res.cookie('token', token, cookieOptions);
   // Save session
   try {
@@ -34,7 +35,10 @@ const issueToken = async (req, res, userId) => {
   } catch (err) {
     console.warn('Failed to save session:', err.message);
   }
+  // Return token so frontend can store in localStorage (for mobile)
+  return token;
 };
+
 
 // POST /api/auth/register
 router.post('/register', [
@@ -138,15 +142,21 @@ router.post('/login', [
     }
 
     await resetLoginAttempts(user.id);
-    await issueToken(req, res, user.id);
+    const token = await issueToken(req, res, user.id);
 
     return res.status(200).json({
       message: 'Login successful.',
+      token,
       user: {
         id: user.id,
         fullName: user.full_name,
         email: user.email,
+        country: user.country,
+        phoneNumber: user.phone_number,
+        address: user.address,
+        isVerified: user.is_verified,
         kycStatus: user.kyc_status,
+        is_admin: user.is_admin,
       },
     });
   } catch (error) {

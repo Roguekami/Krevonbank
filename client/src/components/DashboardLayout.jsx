@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 import api from '../services/api';
 
 const DashboardLayout = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, logoutUser } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -50,7 +50,7 @@ const DashboardLayout = () => {
     try {
       await api.post('/auth/logout');
     } catch (e) { /* ignore */ }
-    setUser(null);
+    logoutUser();
     navigate('/');
   };
 
