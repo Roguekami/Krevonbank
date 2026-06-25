@@ -4,7 +4,6 @@ const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
 const cookieParser = require('cookie-parser');
-const { doubleCsrf } = require('csrf-csrf');
 const { connectDB } = require('./config/db');
 const { globalLimiter } = require('./middleware/rateLimiter');
 
@@ -65,36 +64,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// CSRF Protection setup
-const {
-  generateCsrfToken, // Use this in your routes to provide a CSRF hash cookie and token.
-  doubleCsrfProtection, // This is the default CSRF protection middleware.
-} = doubleCsrf({
-  getSecret: () => process.env.JWT_SECRET || 'supersecretcsrf', // A function that optionally takes the request and returns a secret
-  getSessionIdentifier: () => 'static-session-id', // Required in v4
-  cookieName: 'x-csrf-token', // The name of the cookie to be used, recommend using Host prefix.
-  cookieOptions: {
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
-    path: '/',
-    secure: process.env.NODE_ENV === 'production',
-  },
-  size: 64, // The size of the generated tokens in bits
-  ignoredMethods: ['GET', 'HEAD', 'OPTIONS'], // A list of request methods that will not be protected.
-  getCsrfTokenFromRequest: (req) => req.headers['x-csrf-token'], // A function that returns the token from the request
-});
-
-// Endpoint to get CSRF token
-const csrfLimiter = require('./middleware/rateLimiter').apiLimiter || globalLimiter;
-app.get('/api/csrf-token', csrfLimiter, (req, res) => {
-  const csrfToken = generateCsrfToken(req, res);
-  res.json({ csrfToken });
-});
-
-app.use('/api', (req, res, next) => {
-  // Apply CSRF protection to all /api routes except the csrf-token endpoint itself
-  if (req.path === '/csrf-token') return next();
-  doubleCsrfProtection(req, res, next);
-});
 
 // Database Connection
 connectDB();

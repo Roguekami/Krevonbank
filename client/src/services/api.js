@@ -5,23 +5,7 @@ const api = axios.create({
   withCredentials: true,
 });
 
-let csrfTokenFetched = false;
 
-// Request interceptor to attach CSRF token
-api.interceptors.request.use(async (config) => {
-  // Only fetch CSRF for mutating methods if we haven't already
-  if (!csrfTokenFetched && ['post', 'put', 'delete', 'patch'].includes(config.method)) {
-    try {
-      const { data } = await axios.get(`${api.defaults.baseURL}/csrf-token`, { withCredentials: true });
-      api.defaults.headers['x-csrf-token'] = data.csrfToken;
-      config.headers['x-csrf-token'] = data.csrfToken;
-      csrfTokenFetched = true;
-    } catch (err) {
-      console.error('Failed to fetch CSRF token:', err);
-    }
-  }
-  return config;
-}, (error) => Promise.reject(error));
 
 // Response interceptor to handle 401s globally
 api.interceptors.response.use(
