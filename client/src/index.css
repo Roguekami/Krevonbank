@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
 @theme {
   --color-brand-navy: #0B192C;
   --color-brand-gold: #D4AF37;
