@@ -37,7 +37,6 @@ const Login = () => {
 
 
   return (
-  return (
     <div className="min-h-screen bg-gray-50 dark:bg-[#0B1221] flex items-center justify-center p-6 pt-24 transition-colors duration-200">
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
