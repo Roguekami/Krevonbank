@@ -9,17 +9,19 @@ const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { fetchUser } = useContext(AuthContext);
+  const { loginUser } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       const res = await api.post('/auth/login', formData);
+      const { token, user } = res.data;
+      // Store token + user in context and localStorage
+      loginUser(token, user);
       toast.success(res.data.message);
-      const userData = await fetchUser(); // Update global state
-      // Route admins to admin panel, regular users to dashboard
-      if (userData?.is_admin) {
+      // Route immediately based on response data — no /auth/me needed
+      if (user?.is_admin) {
         navigate('/admin');
       } else {
         navigate('/dashboard');
@@ -30,6 +32,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen bg-[#0B1221] flex items-center justify-center p-6 pt-24">
