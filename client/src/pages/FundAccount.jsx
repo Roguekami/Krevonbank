@@ -172,18 +172,18 @@ const FundAccount = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B1221]">
+    <div className="min-h-screen bg-gray-50 dark:bg-[#0B1221]">
       <div className="max-w-4xl mx-auto px-4 pt-24 pb-16">
         <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-serif text-white">Fund Account</h1>
-            <p className="text-gray-400 mt-1">Deposit funds via Crypto or External Bank Wire</p>
+            <h1 className="text-3xl font-serif text-gray-900 dark:text-white">Fund Account</h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-1">Deposit funds via Crypto or External Bank Wire</p>
           </div>
-          <div className="flex bg-[#152336] p-1 rounded-xl border border-gray-800">
+          <div className="flex bg-white dark:bg-[#152336] p-1 rounded-xl border border-gray-200 dark:border-gray-800">
             <button
               onClick={() => setActiveTab('crypto')}
               className={`flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-medium transition-all ${
-                activeTab === 'crypto' ? 'bg-[#D4AF37] text-[#0B1221] shadow-lg' : 'text-gray-400 hover:text-white'
+                activeTab === 'crypto' ? 'bg-[#D4AF37] text-[#0B1221] shadow-lg' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white'
               }`}
             >
               <Bitcoin size={18} /> Crypto Deposit
@@ -191,7 +191,7 @@ const FundAccount = () => {
             <button
               onClick={() => setActiveTab('bank')}
               className={`flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-medium transition-all ${
-                activeTab === 'bank' ? 'bg-[#D4AF37] text-[#0B1221] shadow-lg' : 'text-gray-400 hover:text-white'
+                activeTab === 'bank' ? 'bg-[#D4AF37] text-[#0B1221] shadow-lg' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white'
               }`}
             >
               <Building2 size={18} /> Bank Transfer
@@ -205,8 +205,8 @@ const FundAccount = () => {
             {activeTab === 'crypto' ? (
               // Crypto Instructions
               <>
-                <div className="bg-[#152336] rounded-2xl p-6 border border-white/5">
-                  <h2 className="text-white font-semibold mb-4">1. Select Cryptocurrency</h2>
+                <div className="bg-white dark:bg-[#152336] rounded-2xl p-6 border border-white/5">
+                  <h2 className="text-gray-900 dark:text-white font-semibold mb-4">1. Select Cryptocurrency</h2>
                   <div className="space-y-3">
                     {CRYPTOS.map(c => (
                       <button
@@ -215,15 +215,15 @@ const FundAccount = () => {
                         className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all ${
                           selectedCrypto?.id === c.id
                             ? 'border-[#D4AF37] bg-[#D4AF37]/10'
-                            : 'border-white/10 hover:border-white/20 bg-[#0B1221]'
+                            : 'border-gray-200 dark:border-white/10 hover:border-white/20 bg-gray-50 dark:bg-[#0B1221]'
                         }`}
                       >
-                        <div className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold text-white" style={{ backgroundColor: c.color }}>
+                        <div className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold text-gray-900 dark:text-white" style={{ backgroundColor: c.color }}>
                           {c.icon}
                         </div>
                         <div className="text-left">
-                          <p className="text-white font-medium">{c.name}</p>
-                          <p className="text-gray-400 text-sm">{c.symbol}</p>
+                          <p className="text-gray-900 dark:text-white font-medium">{c.name}</p>
+                          <p className="text-gray-600 dark:text-gray-400 text-sm">{c.symbol}</p>
                         </div>
                         {selectedCrypto?.id === c.id && <CheckCircle size={18} className="ml-auto text-[#D4AF37]" />}
                       </button>
@@ -232,7 +232,7 @@ const FundAccount = () => {
 
                   {selectedCrypto && selectedCrypto.networks.length > 1 && (
                     <div className="mt-6 pt-6 border-t border-white/5">
-                      <h3 className="text-sm font-medium text-gray-300 mb-3">Select Network</h3>
+                      <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Select Network</h3>
                       <div className="grid grid-cols-3 gap-3">
                         {selectedCrypto.networks.map(net => (
                           <button
@@ -241,7 +241,7 @@ const FundAccount = () => {
                             className={`py-2 px-3 rounded-lg border text-sm font-medium transition-all ${
                               selectedNetwork === net
                                 ? 'border-[#D4AF37] bg-[#D4AF37]/20 text-[#D4AF37]'
-                                : 'border-white/10 bg-[#0B1221] text-gray-400 hover:border-white/30'
+                                : 'border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#0B1221] text-gray-600 dark:text-gray-400 hover:border-white/30'
                             }`}
                           >
                             {net}
@@ -257,9 +257,9 @@ const FundAccount = () => {
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-[#152336] rounded-2xl p-6 border border-white/5"
+                      className="bg-white dark:bg-[#152336] rounded-2xl p-6 border border-white/5"
                     >
-                      <h2 className="text-white font-semibold mb-4">2. Send {selectedCrypto.name}</h2>
+                      <h2 className="text-gray-900 dark:text-white font-semibold mb-4">2. Send {selectedCrypto.name}</h2>
                       {loadingWallet ? (
                         <div className="flex justify-center py-8">
                           <Loader2 className="w-8 h-8 text-[#D4AF37] animate-spin" />
@@ -281,15 +281,15 @@ const FundAccount = () => {
                             </p>
                           </div>
 
-                          <div className="flex items-center gap-2 bg-[#0B1221] rounded-xl px-4 py-3 border border-white/10">
-                            <p className="text-white font-mono text-xs flex-1 break-all">{walletAddress}</p>
-                            <button onClick={() => handleCopy(walletAddress)} className="shrink-0 text-[#D4AF37] hover:text-white transition-colors">
+                          <div className="flex items-center gap-2 bg-gray-50 dark:bg-[#0B1221] rounded-xl px-4 py-3 border border-gray-200 dark:border-white/10">
+                            <p className="text-gray-900 dark:text-white font-mono text-xs flex-1 break-all">{walletAddress}</p>
+                            <button onClick={() => handleCopy(walletAddress)} className="shrink-0 text-[#D4AF37] hover:text-gray-900 dark:text-white transition-colors">
                               <Copy size={18} />
                             </button>
                           </div>
                         </>
                       ) : (
-                        <p className="text-gray-400 text-sm text-center">Wallet address not configured for this network.</p>
+                        <p className="text-gray-600 dark:text-gray-400 text-sm text-center">Wallet address not configured for this network.</p>
                       )}
                     </motion.div>
                   )}
@@ -297,10 +297,10 @@ const FundAccount = () => {
               </>
             ) : (
               // Bank Instructions
-              <div className="bg-[#152336] rounded-2xl p-6 border border-white/5">
-                <h2 className="text-white font-semibold mb-4">1. Wire Transfer Details</h2>
+              <div className="bg-white dark:bg-[#152336] rounded-2xl p-6 border border-white/5">
+                <h2 className="text-gray-900 dark:text-white font-semibold mb-4">1. Wire Transfer Details</h2>
                 <div className="mb-6">
-                  <label className="block text-gray-300 text-sm mb-2">Select Currency to Deposit</label>
+                  <label className="block text-gray-700 dark:text-gray-300 text-sm mb-2">Select Currency to Deposit</label>
                   <div className="flex gap-3">
                     {FIAT_CURRENCIES.map(curr => (
                       <button
@@ -309,7 +309,7 @@ const FundAccount = () => {
                         className={`flex-1 py-2 rounded-lg border text-sm font-medium transition-all ${
                           selectedFiat === curr
                             ? 'border-[#D4AF37] bg-[#D4AF37]/20 text-[#D4AF37]'
-                            : 'border-white/10 bg-[#0B1221] text-gray-400 hover:border-white/30'
+                            : 'border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#0B1221] text-gray-600 dark:text-gray-400 hover:border-white/30'
                         }`}
                       >
                         {curr}
@@ -321,29 +321,29 @@ const FundAccount = () => {
                 {loadingBank ? (
                   <div className="flex justify-center py-8"><Loader2 className="w-8 h-8 text-[#D4AF37] animate-spin" /></div>
                 ) : bankInstructions ? (
-                  <div className="bg-[#0B1221] rounded-xl p-5 border border-white/10 space-y-4">
+                  <div className="bg-gray-50 dark:bg-[#0B1221] rounded-xl p-5 border border-gray-200 dark:border-white/10 space-y-4">
                     <div>
                       <p className="text-xs text-gray-500 mb-1">Beneficiary Name</p>
-                      <p className="text-white font-medium">{bankInstructions.accountName}</p>
+                      <p className="text-gray-900 dark:text-white font-medium">{bankInstructions.accountName}</p>
                     </div>
                     <div>
                       <p className="text-xs text-gray-500 mb-1">Bank Name</p>
-                      <p className="text-white font-medium">{bankInstructions.bankName}</p>
+                      <p className="text-gray-900 dark:text-white font-medium">{bankInstructions.bankName}</p>
                     </div>
                     <div>
                       <p className="text-xs text-gray-500 mb-1">Address</p>
-                      <p className="text-white font-medium">{bankInstructions.address}</p>
+                      <p className="text-gray-900 dark:text-white font-medium">{bankInstructions.address}</p>
                     </div>
                     <div>
                       <p className="text-xs text-gray-500 mb-1">Postal Code</p>
-                      <p className="text-white font-medium">{bankInstructions.postalCode}</p>
+                      <p className="text-gray-900 dark:text-white font-medium">{bankInstructions.postalCode}</p>
                     </div>
                     <div className="pt-2 border-t border-white/5 flex items-center justify-between">
                       <div>
                         <p className="text-xs text-gray-500 mb-1">IBAN</p>
                         <p className="text-[#D4AF37] font-mono font-medium">{bankInstructions.iban}</p>
                       </div>
-                      <button onClick={() => handleCopy(bankInstructions.iban)} className="text-gray-400 hover:text-white p-2">
+                      <button onClick={() => handleCopy(bankInstructions.iban)} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white p-2">
                         <Copy size={16} />
                       </button>
                     </div>
@@ -352,7 +352,7 @@ const FundAccount = () => {
                         <p className="text-xs text-gray-500 mb-1">SWIFT / BIC Code</p>
                         <p className="text-[#D4AF37] font-mono font-medium">{bankInstructions.swift}</p>
                       </div>
-                      <button onClick={() => handleCopy(bankInstructions.swift)} className="text-gray-400 hover:text-white p-2">
+                      <button onClick={() => handleCopy(bankInstructions.swift)} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white p-2">
                         <Copy size={16} />
                       </button>
                     </div>
@@ -373,22 +373,22 @@ const FundAccount = () => {
 
           {/* Right Column: Submission & History */}
           <div className="space-y-6">
-            <div className="bg-[#152336] rounded-2xl p-6 border border-white/5">
-              <h2 className="text-white font-semibold mb-2">
+            <div className="bg-white dark:bg-[#152336] rounded-2xl p-6 border border-white/5">
+              <h2 className="text-gray-900 dark:text-white font-semibold mb-2">
                 2. Submit Proof of Payment
               </h2>
-              <p className="text-gray-400 text-sm mb-5">
+              <p className="text-gray-600 dark:text-gray-400 text-sm mb-5">
                 After sending, submit your transfer details below so our team can verify and credit your account.
               </p>
               
               {activeTab === 'crypto' ? (
                 <form onSubmit={handleCryptoSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-gray-300 text-sm mb-1.5">Cryptocurrency Sent</label>
+                    <label className="block text-gray-700 dark:text-gray-300 text-sm mb-1.5">Cryptocurrency Sent</label>
                     <select
                       value={selectedCrypto?.id || ''}
                       onChange={e => handleSelectCrypto(CRYPTOS.find(c => c.id === e.target.value))}
-                      className="w-full bg-[#0B1221] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37]"
+                      className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-[#D4AF37]"
                     >
                       <option value="">Select crypto...</option>
                       {CRYPTOS.map(c => <option key={c.id} value={c.id}>{c.name} ({c.symbol})</option>)}
@@ -397,11 +397,11 @@ const FundAccount = () => {
                   
                   {selectedCrypto && selectedCrypto.networks.length > 1 && (
                     <div>
-                      <label className="block text-gray-300 text-sm mb-1.5">Network Used</label>
+                      <label className="block text-gray-700 dark:text-gray-300 text-sm mb-1.5">Network Used</label>
                       <select
                         value={selectedNetwork}
                         onChange={e => handleSelectNetwork(e.target.value)}
-                        className="w-full bg-[#0B1221] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37]"
+                        className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-[#D4AF37]"
                       >
                         <option value="">Select network...</option>
                         {selectedCrypto.networks.map(net => <option key={net} value={net}>{net}</option>)}
@@ -410,7 +410,7 @@ const FundAccount = () => {
                   )}
 
                   <div>
-                    <label className="block text-gray-300 text-sm mb-1.5">Amount Sent</label>
+                    <label className="block text-gray-700 dark:text-gray-300 text-sm mb-1.5">Amount Sent</label>
                     <input
                       type="number"
                       step="any"
@@ -418,17 +418,17 @@ const FundAccount = () => {
                       value={cryptoAmount}
                       onChange={e => setCryptoAmount(e.target.value)}
                       placeholder="e.g. 0.005"
-                      className="w-full bg-[#0B1221] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37]"
+                      className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-[#D4AF37]"
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 text-sm mb-1.5">Transaction Hash / TXID</label>
+                    <label className="block text-gray-700 dark:text-gray-300 text-sm mb-1.5">Transaction Hash / TXID</label>
                     <textarea
                       rows={3}
                       value={cryptoTxHash}
                       onChange={e => setCryptoTxHash(e.target.value)}
                       placeholder="Paste your transaction hash here..."
-                      className="w-full bg-[#0B1221] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37] font-mono text-sm resize-none"
+                      className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-[#D4AF37] font-mono text-sm resize-none"
                     />
                   </div>
                   <motion.button
@@ -444,7 +444,7 @@ const FundAccount = () => {
               ) : (
                 <form onSubmit={handleBankSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-gray-300 text-sm mb-1.5">Amount Sent ({selectedFiat})</label>
+                    <label className="block text-gray-700 dark:text-gray-300 text-sm mb-1.5">Amount Sent ({selectedFiat})</label>
                     <input
                       type="number"
                       step="any"
@@ -452,37 +452,37 @@ const FundAccount = () => {
                       value={bankForm.amount}
                       onChange={e => setBankForm({...bankForm, amount: e.target.value})}
                       placeholder="e.g. 5000"
-                      className="w-full bg-[#0B1221] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37]"
+                      className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-[#D4AF37]"
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 text-sm mb-1.5">Your Full Name (Sender)</label>
+                    <label className="block text-gray-700 dark:text-gray-300 text-sm mb-1.5">Your Full Name (Sender)</label>
                     <input
                       type="text"
                       value={bankForm.senderName}
                       onChange={e => setBankForm({...bankForm, senderName: e.target.value})}
                       placeholder="Name on bank account"
-                      className="w-full bg-[#0B1221] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37]"
+                      className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-[#D4AF37]"
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 text-sm mb-1.5">Sender Bank Name</label>
+                    <label className="block text-gray-700 dark:text-gray-300 text-sm mb-1.5">Sender Bank Name</label>
                     <input
                       type="text"
                       value={bankForm.senderBank}
                       onChange={e => setBankForm({...bankForm, senderBank: e.target.value})}
                       placeholder="e.g. Chase Bank, Barclays"
-                      className="w-full bg-[#0B1221] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37]"
+                      className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-[#D4AF37]"
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 text-sm mb-1.5">Reference / Receipt Number</label>
+                    <label className="block text-gray-700 dark:text-gray-300 text-sm mb-1.5">Reference / Receipt Number</label>
                     <input
                       type="text"
                       value={bankForm.referenceCode}
                       onChange={e => setBankForm({...bankForm, referenceCode: e.target.value})}
                       placeholder="Transfer reference code"
-                      className="w-full bg-[#0B1221] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37]"
+                      className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-[#D4AF37]"
                     />
                   </div>
                   <motion.button
@@ -498,12 +498,12 @@ const FundAccount = () => {
               )}
             </div>
 
-            <div className="bg-[#152336] rounded-2xl p-6 border border-white/5">
-              <h2 className="text-white font-semibold mb-4">My Submissions</h2>
+            <div className="bg-white dark:bg-[#152336] rounded-2xl p-6 border border-white/5">
+              <h2 className="text-gray-900 dark:text-white font-semibold mb-4">My Submissions</h2>
               {loadingHistory ? (
                 <div className="flex justify-center py-4"><Loader2 className="w-6 h-6 text-[#D4AF37] animate-spin" /></div>
               ) : history.length === 0 ? (
-                <p className="text-gray-400 text-sm text-center py-4">No submissions yet.</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm text-center py-4">No submissions yet.</p>
               ) : (
                 <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                   {history.map(req => {
@@ -511,14 +511,14 @@ const FundAccount = () => {
                     const Icon = style.icon;
                     const isCrypto = !!req.crypto_type;
                     return (
-                      <div key={req.id} className="flex items-center justify-between p-3 bg-[#0B1221] rounded-xl border border-white/5">
+                      <div key={req.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-[#0B1221] rounded-xl border border-white/5">
                         <div className="flex items-start gap-3">
                           <div className={`mt-1 p-1.5 rounded-lg ${isCrypto ? 'bg-orange-500/10 text-orange-400' : 'bg-blue-500/10 text-blue-400'}`}>
                             {isCrypto ? <Bitcoin size={16} /> : <Building2 size={16} />}
                           </div>
                           <div>
                             <div className="flex items-center gap-2">
-                              <p className="text-white text-sm font-medium">
+                              <p className="text-gray-900 dark:text-white text-sm font-medium">
                                 {isCrypto ? req.crypto_type : req.currency} â€” {isCrypto ? req.amount_sent : req.amount}
                               </p>
                             </div>

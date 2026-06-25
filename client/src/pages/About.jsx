@@ -83,10 +83,10 @@ const About = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
                 Elevating Global Banking
               </h1>
-              <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-10">
+              <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
                 Krevon was founded on a single mission to make premium international banking accessible to everyone, everywhere. We combine the trust of traditional banking with the speed and innovation of modern fintech, delivering a seamless financial experience across borders.
               </p>
             </motion.div>
@@ -103,10 +103,10 @@ const About = () => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white/5 border border-white/10 p-6 rounded-2xl text-center backdrop-blur-sm"
+                  className="bg-white/5 border border-gray-200 dark:border-white/10 p-6 rounded-2xl text-center backdrop-blur-sm"
                 >
                   <div className="text-3xl md:text-4xl font-bold text-brand-gold mb-2">{stat.value}</div>
-                  <div className="text-sm md:text-base text-gray-400">{stat.label}</div>
+                  <div className="text-sm md:text-base text-gray-600 dark:text-gray-400">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -114,7 +114,7 @@ const About = () => {
         </section>
 
         {/* Our Story Section */}
-        <section className="py-20 px-8 bg-[#0B1221]">
+        <section className="py-20 px-8 bg-gray-50 dark:bg-[#0B1221]">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -123,8 +123,8 @@ const About = () => {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">Our Story</h2>
-              <div className="text-lg text-gray-300 space-y-6 text-left md:text-center leading-relaxed">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8">Our Story</h2>
+              <div className="text-lg text-gray-700 dark:text-gray-300 space-y-6 text-left md:text-center leading-relaxed">
                 <p>
                   Krevon was established in London with a vision to break down the barriers of traditional banking. We recognised that millions of individuals and businesses around the world were underserved by legacy financial institutions facing high fees, slow transfers, and limited access to global markets.
                 </p>
@@ -143,10 +143,10 @@ const About = () => {
         <section className="py-20 px-8 bg-[#0f172a]/50">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 Why Choose <span className="text-brand-gold">Krevon</span>
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
+              <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                 Discover the features that make Krevon the preferred choice for forward-thinking individuals and businesses worldwide.
               </p>
             </div>
@@ -159,15 +159,15 @@ const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white/5 border border-white/10 p-8 rounded-xl hover:bg-white/10 transition-colors h-full flex flex-col"
+                  className="bg-white/5 border border-gray-200 dark:border-white/10 p-8 rounded-xl hover:bg-white/10 transition-colors h-full flex flex-col"
                 >
                   <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6 shrink-0">
                     {feature.icon}
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-gray-400 leading-relaxed flex-grow">
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed flex-grow">
                     {feature.description}
                   </p>
                 </motion.div>
@@ -180,7 +180,7 @@ const About = () => {
         <section className="py-20 px-8 bg-brand-navy">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What We Stand For</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">What We Stand For</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -196,10 +196,10 @@ const About = () => {
                   <div className="w-16 h-16 bg-brand-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 shrink-0">
                     {value.icon}
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
                     {value.title}
                   </h3>
-                  <p className="text-sm text-gray-400 leading-relaxed">
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                     {value.description}
                   </p>
                 </motion.div>
@@ -218,10 +218,10 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                 Ready to Experience Global Banking?
               </h2>
-              <p className="text-xl text-gray-300 mb-10">
+              <p className="text-xl text-gray-700 dark:text-gray-300 mb-10">
                 Join thousands of customers who trust Krevon with their finances every day.
               </p>
               <Link to="/register">

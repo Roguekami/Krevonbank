@@ -24,15 +24,15 @@ const faqs = [
 const FAQItem = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="border border-white/10 rounded-lg bg-white/5 overflow-hidden">
+    <div className="border border-gray-200 dark:border-white/10 rounded-lg bg-white/5 overflow-hidden">
       <button onClick={() => setIsOpen(!isOpen)} className="w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none">
-        <span className="font-medium text-white pr-4">{question}</span>
+        <span className="font-medium text-gray-900 dark:text-white pr-4">{question}</span>
         <ChevronDown className={`w-5 h-5 text-brand-gold shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       <AnimatePresence>
         {isOpen && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
-            <div className="px-6 pb-4 text-gray-400 text-sm leading-relaxed">
+            <div className="px-6 pb-4 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
               {answer}
             </div>
           </motion.div>
@@ -73,8 +73,8 @@ const Support = () => {
         <section className="pt-24 pb-16 px-8 relative overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-gold/10 via-brand-navy to-brand-navy">
           <div className="max-w-4xl mx-auto text-center relative z-10">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">How Can We Help?</h1>
-              <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-10">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">How Can We Help?</h1>
+              <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
                 Browse our most frequently asked questions or send us a message directly. Our premium support team is available 24 hours a day, 7 days a week to assist you with any questions or concerns.
               </p>
             </motion.div>
@@ -82,15 +82,15 @@ const Support = () => {
         </section>
 
         {/* Contact Details Strip */}
-        <section className="border-y border-white/10 bg-[#0f172a]/50">
+        <section className="border-y border-gray-200 dark:border-white/10 bg-[#0f172a]/50">
           <div className="max-w-7xl mx-auto px-8 py-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm text-gray-300">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm text-gray-700 dark:text-gray-300">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center shrink-0">
                   <Mail className="w-5 h-5 text-brand-gold" />
                 </div>
                 <div>
-                  <div className="font-semibold text-white mb-0.5">Email</div>
+                  <div className="font-semibold text-gray-900 dark:text-white mb-0.5">Email</div>
                   <a href="mailto:support@krevon.com" className="hover:text-brand-gold transition-colors block">support@krevon.com</a>
                 </div>
               </div>
@@ -99,7 +99,7 @@ const Support = () => {
                   <Phone className="w-5 h-5 text-brand-gold" />
                 </div>
                 <div>
-                  <div className="font-semibold text-white mb-0.5">Phone</div>
+                  <div className="font-semibold text-gray-900 dark:text-white mb-0.5">Phone</div>
                   <span>+44 20 0000 0000</span>
                 </div>
               </div>
@@ -108,7 +108,7 @@ const Support = () => {
                   <MapPin className="w-5 h-5 text-brand-gold" />
                 </div>
                 <div>
-                  <div className="font-semibold text-white mb-0.5">Address</div>
+                  <div className="font-semibold text-gray-900 dark:text-white mb-0.5">Address</div>
                   <span>Krevon International Bank, London, UK</span>
                 </div>
               </div>
@@ -117,7 +117,7 @@ const Support = () => {
                   <Clock className="w-5 h-5 text-brand-gold" />
                 </div>
                 <div>
-                  <div className="font-semibold text-white mb-0.5">Response Time</div>
+                  <div className="font-semibold text-gray-900 dark:text-white mb-0.5">Response Time</div>
                   <span>2 to 4 business hours</span>
                 </div>
               </div>
@@ -131,7 +131,7 @@ const Support = () => {
             
             {/* FAQ Section */}
             <div className="lg:col-span-7">
-              <h2 className="text-3xl font-bold text-white mb-8">Frequently Asked Questions</h2>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Frequently Asked Questions</h2>
               <div className="space-y-4">
                 {faqs.map((faq, index) => (
                   <FAQItem key={index} question={faq.question} answer={faq.answer} />
@@ -141,9 +141,9 @@ const Support = () => {
 
             {/* Contact Form Section */}
             <div className="lg:col-span-5 relative">
-              <div className="sticky top-24 bg-[#0f172a] border border-white/10 rounded-xl p-8 shadow-2xl">
-                <h2 className="text-2xl font-bold text-white mb-2">Send Us a Message</h2>
-                <p className="text-sm text-gray-400 mb-8 leading-relaxed">
+              <div className="sticky top-24 bg-[#0f172a] border border-gray-200 dark:border-white/10 rounded-xl p-8 shadow-2xl">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Send Us a Message</h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
                   Can't find what you're looking for? Fill out the form below and a member of our support team will get back to you within 2 to 4 business hours.
                 </p>
 
@@ -155,7 +155,7 @@ const Support = () => {
                     <p className="text-green-400 font-medium leading-relaxed">{successMsg}</p>
                     <button 
                       onClick={() => setSuccessMsg('')} 
-                      className="mt-6 text-sm text-brand-gold hover:text-white transition-colors font-medium"
+                      className="mt-6 text-sm text-brand-gold hover:text-gray-900 dark:text-white transition-colors font-medium"
                     >
                       Send another message
                     </button>
@@ -163,23 +163,23 @@ const Support = () => {
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Name</label>
-                      <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required className="w-full bg-brand-navy border border-white/10 rounded-md px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition-colors" placeholder="John Doe" />
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
+                      <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required className="w-full bg-brand-navy border border-gray-200 dark:border-white/10 rounded-md px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-brand-gold transition-colors" placeholder="John Doe" />
                     </div>
                     
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                      <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required className="w-full bg-brand-navy border border-white/10 rounded-md px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition-colors" placeholder="john@example.com" />
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                      <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required className="w-full bg-brand-navy border border-gray-200 dark:border-white/10 rounded-md px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-brand-gold transition-colors" placeholder="john@example.com" />
                     </div>
 
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-1">Subject</label>
-                      <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleChange} required className="w-full bg-brand-navy border border-white/10 rounded-md px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition-colors" placeholder="How can we help you?" />
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Subject</label>
+                      <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleChange} required className="w-full bg-brand-navy border border-gray-200 dark:border-white/10 rounded-md px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-brand-gold transition-colors" placeholder="How can we help you?" />
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">Message</label>
-                      <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows="5" className="w-full bg-brand-navy border border-white/10 rounded-md px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition-colors resize-none" placeholder="Describe your issue..." />
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
+                      <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows="5" className="w-full bg-brand-navy border border-gray-200 dark:border-white/10 rounded-md px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-brand-gold transition-colors resize-none" placeholder="Describe your issue..." />
                     </div>
 
                     <button type="submit" disabled={isSubmitting} className="w-full bg-brand-gold text-brand-navy font-bold py-3.5 rounded-md hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all disabled:opacity-70 disabled:cursor-not-allowed">

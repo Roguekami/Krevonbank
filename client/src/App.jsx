@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { GlobalProvider } from './context/GlobalState';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import LandingPage from './pages/LandingPage';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -30,10 +31,11 @@ import './index.css';
 
 function App() {
   return (
-    <GlobalProvider>
-      <AuthProvider>
-        <Router>
-          <Routes>
+    <ThemeProvider>
+      <GlobalProvider>
+        <AuthProvider>
+          <Router>
+            <Routes>
             {/* Public Routes - Redirect to dashboard if logged in */}
             <Route element={<PublicRoute />}>
               <Route path="/" element={<LandingPage />} />
@@ -89,8 +91,9 @@ function App() {
             style: { background: '#152336', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' } 
           }} 
         />
-      </AuthProvider>
-    </GlobalProvider>
+        </AuthProvider>
+      </GlobalProvider>
+    </ThemeProvider>
   );
 }
 

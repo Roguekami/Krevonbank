@@ -1,11 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
-import { Users, FileCheck, DollarSign, Activity, CreditCard, LogOut, Menu, X, History } from 'lucide-react';
+import { Users, FileCheck, DollarSign, Activity, CreditCard, LogOut, Menu, X, History, Sun, Moon } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
+import { ThemeContext } from '../context/ThemeContext';
 import api from '../services/api';
 
 const AdminLayout = () => {
   const { user, setUser } = useContext(AuthContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -31,10 +33,10 @@ const AdminLayout = () => {
   const sidebarContent = (onNavClick) => (
     <>
       {/* Logo */}
-      <div className="p-6 border-b border-gray-800">
+      <div className="p-6 border-b border-gray-200 dark:border-gray-800">
         <Link to="/admin" className="flex items-center gap-3" onClick={onNavClick}>
           <div className="w-8 h-8 bg-[#D4AF37] flex items-center justify-center font-bold text-[#0B1221] rounded-sm">K</div>
-          <span className="text-2xl font-bold text-white tracking-wide">Admin</span>
+          <span className="text-2xl font-bold text-gray-900 dark:text-white tracking-wide">Admin</span>
         </Link>
       </div>
 
@@ -51,7 +53,7 @@ const AdminLayout = () => {
               className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
                 isActive
                   ? 'bg-[#D4AF37]/10 text-[#D4AF37]'
-                  : 'text-gray-400 hover:bg-white/5 hover:text-white'
+                  : 'text-gray-600 dark:text-gray-400 hover:bg-white/5 hover:text-gray-900 dark:text-white'
               }`}
             >
               <Icon size={20} />
@@ -61,14 +63,25 @@ const AdminLayout = () => {
         })}
       </div>
 
+      {/* Theme Toggle Button */}
+      <div className="px-4 pb-2">
+        <button
+          onClick={toggleTheme}
+          className="flex items-center gap-3 px-4 py-3 rounded-lg font-medium w-full text-left text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white transition-colors"
+        >
+          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+        </button>
+      </div>
+
       {/* User info & sign out */}
-      <div className="p-4 border-t border-gray-800">
+      <div className="p-4 border-t border-gray-200 dark:border-gray-800">
         <div className="flex items-center gap-3 px-4 py-3 mb-2">
-          <div className="w-8 h-8 rounded-full bg-[#152336] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] font-bold">
+          <div className="w-8 h-8 rounded-full bg-white dark:bg-[#152336] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] font-bold">
             {user?.full_name?.charAt(0) || 'A'}
           </div>
           <div className="overflow-hidden">
-            <p className="text-sm font-medium text-white truncate">{user?.full_name}</p>
+            <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{user?.full_name}</p>
             <p className="text-xs text-gray-500 truncate">Administrator</p>
           </div>
         </div>
@@ -84,9 +97,9 @@ const AdminLayout = () => {
   );
 
   return (
-    <div className="flex min-h-screen bg-[#0B1221] font-sans">
+    <div className="flex min-h-screen bg-gray-50 dark:bg-[#0B1221] font-sans">
       {/* ── Desktop Sidebar (md+) ── */}
-      <aside className="w-64 bg-[#111A2C] border-r border-gray-800 flex-col hidden md:flex">
+      <aside className="w-64 bg-gray-100 dark:bg-[#111A2C] border-r border-gray-200 dark:border-gray-800 flex-col hidden md:flex">
         {sidebarContent(undefined)}
       </aside>
 
@@ -105,21 +118,21 @@ const AdminLayout = () => {
 
       {/* Slide-out panel */}
       <aside
-        className="md:hidden fixed top-0 left-0 z-50 h-full w-64 bg-[#111A2C] border-r border-gray-800 flex flex-col"
+        className="md:hidden fixed top-0 left-0 z-50 h-full w-64 bg-gray-100 dark:bg-[#111A2C] border-r border-gray-200 dark:border-gray-800 flex flex-col"
         style={{
           transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
           transition: 'transform 0.3s ease',
         }}
       >
         {/* Close button in mobile sidebar header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-800">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-800">
           <Link to="/admin" className="flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
             <div className="w-8 h-8 bg-[#D4AF37] flex items-center justify-center font-bold text-[#0B1221] rounded-sm">K</div>
-            <span className="text-2xl font-bold text-white tracking-wide">Admin</span>
+            <span className="text-2xl font-bold text-gray-900 dark:text-white tracking-wide">Admin</span>
           </Link>
           <button
             onClick={() => setMobileMenuOpen(false)}
-            className="text-gray-400 hover:text-white transition-colors"
+            className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors"
             aria-label="Close menu"
           >
             <X size={24} />
@@ -139,7 +152,7 @@ const AdminLayout = () => {
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
                   isActive
                     ? 'bg-[#D4AF37]/10 text-[#D4AF37]'
-                    : 'text-gray-400 hover:bg-white/5 hover:text-white'
+                    : 'text-gray-600 dark:text-gray-400 hover:bg-white/5 hover:text-gray-900 dark:text-white'
                 }`}
               >
                 <Icon size={20} />
@@ -150,13 +163,13 @@ const AdminLayout = () => {
         </div>
 
         {/* User info & sign out */}
-        <div className="p-4 border-t border-gray-800">
+        <div className="p-4 border-t border-gray-200 dark:border-gray-800">
           <div className="flex items-center gap-3 px-4 py-3 mb-2">
-            <div className="w-8 h-8 rounded-full bg-[#152336] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] font-bold">
+            <div className="w-8 h-8 rounded-full bg-white dark:bg-[#152336] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] font-bold">
               {user?.full_name?.charAt(0) || 'A'}
             </div>
             <div className="overflow-hidden">
-              <p className="text-sm font-medium text-white truncate">{user?.full_name}</p>
+              <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{user?.full_name}</p>
               <p className="text-xs text-gray-500 truncate">Administrator</p>
             </div>
           </div>
@@ -171,16 +184,16 @@ const AdminLayout = () => {
       </aside>
 
       {/* ── Main Content Area ── */}
-      <div className="flex-1 flex flex-col h-screen overflow-hidden bg-[#0B1221]">
+      <div className="flex-1 flex flex-col h-screen overflow-hidden bg-gray-50 dark:bg-[#0B1221]">
         {/* Mobile Header with hamburger */}
-        <header className="md:hidden bg-[#111A2C] border-b border-gray-800 p-4 flex items-center justify-between">
+        <header className="md:hidden bg-gray-100 dark:bg-[#111A2C] border-b border-gray-200 dark:border-gray-800 p-4 flex items-center justify-between">
           <Link to="/admin" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-[#D4AF37] flex items-center justify-center font-bold text-[#0B1221] rounded-sm">K</div>
-            <span className="text-xl font-bold text-white tracking-wide">Admin</span>
+            <span className="text-xl font-bold text-gray-900 dark:text-white tracking-wide">Admin</span>
           </Link>
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="text-gray-400 hover:text-white transition-colors p-2"
+            className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white transition-colors p-2"
             aria-label="Open menu"
           >
             <Menu size={24} />

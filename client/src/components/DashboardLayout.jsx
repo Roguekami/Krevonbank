@@ -1,11 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
-import { LayoutDashboard, ArrowRightLeft, Plus, CreditCard, Clock, Users, LogOut, Menu, X, Settings as SettingsIcon, MessageCircle } from 'lucide-react';
+import { LayoutDashboard, ArrowRightLeft, Plus, CreditCard, Clock, Users, LogOut, Menu, X, Settings as SettingsIcon, MessageCircle, Sun, Moon } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
+import { ThemeContext } from '../context/ThemeContext';
 import api from '../services/api';
 
 const DashboardLayout = () => {
   const { user, logoutUser } = useContext(AuthContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -69,10 +71,10 @@ const DashboardLayout = () => {
   const sidebarContent = (
     <>
       {/* Logo */}
-      <div className="p-6 border-b border-gray-800">
+      <div className="p-6 border-b border-gray-200 dark:border-gray-800">
         <Link to="/dashboard" className="flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
           <div className="w-8 h-8 bg-[#D4AF37] flex items-center justify-center font-bold text-[#0B1221] rounded-sm">K</div>
-          <span className="text-2xl font-bold text-white tracking-wide">Krevon</span>
+          <span className="text-2xl font-bold text-gray-900 dark:text-white tracking-wide">Krevon</span>
         </Link>
       </div>
 
@@ -89,7 +91,7 @@ const DashboardLayout = () => {
               className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
                 isActive 
                   ? 'bg-[#D4AF37]/10 text-[#D4AF37]' 
-                  : 'text-gray-400 hover:bg-white/5 hover:text-white'
+                  : 'text-gray-600 dark:text-gray-400 hover:bg-white/5 hover:text-gray-900 dark:text-white'
               }`}
             >
               <Icon size={20} />
@@ -101,7 +103,7 @@ const DashboardLayout = () => {
         {/* Live Chat Button */}
         <button
           onClick={handleOpenLiveChat}
-          className="flex items-center gap-3 px-4 py-3 rounded-lg font-medium w-full text-left text-gray-400 hover:bg-white/5 hover:text-white transition-colors"
+          className="flex items-center gap-3 px-4 py-3 rounded-lg font-medium w-full text-left text-gray-600 dark:text-gray-400 hover:bg-white/5 hover:text-gray-900 dark:text-white transition-colors"
         >
           <MessageCircle size={20} />
           Live Chat
@@ -110,16 +112,25 @@ const DashboardLayout = () => {
             <span className="text-xs text-green-400">Online</span>
           </span>
         </button>
+
+        {/* Theme Toggle Button */}
+        <button
+          onClick={toggleTheme}
+          className="flex items-center gap-3 px-4 py-3 rounded-lg font-medium w-full text-left text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white transition-colors"
+        >
+          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+        </button>
       </div>
 
       {/* User Info & Sign Out */}
-      <div className="p-4 border-t border-gray-800">
+      <div className="p-4 border-t border-gray-200 dark:border-gray-800">
         <div className="flex items-center gap-3 px-4 py-3 mb-2">
-          <div className="w-8 h-8 rounded-full bg-[#152336] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] font-bold">
+          <div className="w-8 h-8 rounded-full bg-white dark:bg-[#152336] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] font-bold">
             {user?.full_name?.charAt(0) || 'U'}
           </div>
           <div className="overflow-hidden">
-            <p className="text-sm font-medium text-white truncate">{user?.full_name}</p>
+            <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{user?.full_name}</p>
             <p className="text-xs text-gray-500 truncate">{user?.email}</p>
           </div>
         </div>
@@ -135,9 +146,9 @@ const DashboardLayout = () => {
   );
 
   return (
-    <div className="flex min-h-screen bg-[#0B1221] font-sans">
+    <div className="flex min-h-screen bg-gray-50 dark:bg-[#0B1221] font-sans">
       {/* ===== Desktop Sidebar (md+) ===== */}
-      <aside className="w-64 bg-[#111A2C] border-r border-gray-800 flex-col hidden md:flex">
+      <aside className="w-64 bg-gray-100 dark:bg-[#111A2C] border-r border-gray-200 dark:border-gray-800 flex-col hidden md:flex">
         {sidebarContent}
       </aside>
 
@@ -151,7 +162,7 @@ const DashboardLayout = () => {
 
       {/* ===== Mobile Slide-out Sidebar ===== */}
       <aside
-        className="fixed top-0 left-0 z-50 h-full w-64 bg-[#111A2C] border-r border-gray-800 flex flex-col md:hidden"
+        className="fixed top-0 left-0 z-50 h-full w-64 bg-gray-100 dark:bg-[#111A2C] border-r border-gray-200 dark:border-gray-800 flex flex-col md:hidden"
         style={{
           transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
           transition: 'transform 300ms ease-in-out',
@@ -160,7 +171,7 @@ const DashboardLayout = () => {
         {/* Close button */}
         <button
           onClick={() => setMobileMenuOpen(false)}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white p-1"
+          className="absolute top-4 right-4 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white p-1"
           aria-label="Close menu"
         >
           <X size={22} />
@@ -169,16 +180,16 @@ const DashboardLayout = () => {
       </aside>
 
       {/* ===== Main Content Area ===== */}
-      <div className="flex-1 flex flex-col h-screen overflow-hidden bg-[#0B1221]">
+      <div className="flex-1 flex flex-col h-screen overflow-hidden bg-gray-50 dark:bg-[#0B1221]">
         {/* Mobile Header */}
-        <header className="md:hidden bg-[#111A2C] border-b border-gray-800 p-4 flex items-center justify-between">
+        <header className="md:hidden bg-gray-100 dark:bg-[#111A2C] border-b border-gray-200 dark:border-gray-800 p-4 flex items-center justify-between">
           <Link to="/dashboard" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-[#D4AF37] flex items-center justify-center font-bold text-[#0B1221] rounded-sm">K</div>
-            <span className="text-xl font-bold text-white tracking-wide">Krevon</span>
+            <span className="text-xl font-bold text-gray-900 dark:text-white tracking-wide">Krevon</span>
           </Link>
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="text-gray-300 hover:text-white p-2"
+            className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:text-white p-2"
             aria-label="Open menu"
           >
             <Menu size={24} />

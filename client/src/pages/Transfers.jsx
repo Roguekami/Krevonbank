@@ -76,30 +76,30 @@ const ConfirmModal = ({ fromCurrency, toCurrency, amount, convertedAmount, rate,
         initial={{ opacity: 0, scale: 0.94, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.94, y: 20 }}
-        className="bg-[#111A2C] border border-white/10 rounded-2xl p-8 max-w-sm w-full shadow-2xl"
+        className="bg-gray-100 dark:bg-[#111A2C] border border-gray-200 dark:border-white/10 rounded-2xl p-8 max-w-sm w-full shadow-2xl"
       >
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-bold text-white flex items-center gap-2">
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
             <ShieldCheck size={20} className="text-[#D4AF37]" /> Confirm Transfer
           </h3>
-          <button onClick={onCancel} className="text-gray-500 hover:text-white transition-colors">
+          <button onClick={onCancel} className="text-gray-500 hover:text-gray-900 dark:text-white transition-colors">
             <X size={20} />
           </button>
         </div>
 
         {/* Summary */}
-        <div className="bg-[#0B1221] rounded-xl p-5 mb-5 space-y-3">
+        <div className="bg-gray-50 dark:bg-[#0B1221] rounded-xl p-5 mb-5 space-y-3">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-400">You Send</span>
-            <span className="text-white font-bold font-mono">{formatBalance(amount, fromCurrency)}</span>
+            <span className="text-gray-600 dark:text-gray-400">You Send</span>
+            <span className="text-gray-900 dark:text-white font-bold font-mono">{formatBalance(amount, fromCurrency)}</span>
           </div>
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-400">You Receive</span>
+            <span className="text-gray-600 dark:text-gray-400">You Receive</span>
             <span className="text-[#D4AF37] font-bold font-mono">≈ {formatBalance(convertedAmount, toCurrency)}</span>
           </div>
           <div className="border-t border-white/5 pt-3 flex items-center justify-between text-xs">
             <span className="text-gray-500">Exchange Rate</span>
-            <span className="text-gray-300 font-mono">1 {fromCurrency} = {rate.toFixed(6)} {toCurrency}</span>
+            <span className="text-gray-700 dark:text-gray-300 font-mono">1 {fromCurrency} = {rate.toFixed(6)} {toCurrency}</span>
           </div>
         </div>
 
@@ -115,7 +115,7 @@ const ConfirmModal = ({ fromCurrency, toCurrency, amount, convertedAmount, rate,
         <div className="flex gap-3">
           <button
             onClick={onCancel}
-            className="flex-1 py-3 rounded-xl border border-white/10 text-gray-400 hover:text-white hover:border-white/20 transition-colors font-medium text-sm"
+            className="flex-1 py-3 rounded-xl border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white hover:border-white/20 transition-colors font-medium text-sm"
           >
             Cancel
           </button>
@@ -273,7 +273,7 @@ const Transfers = () => {
   };
 
   // ─── Shared style ────────────────────────────────────────────────────────
-  const inputCls = 'w-full bg-[#0B1221] border border-gray-700 text-white rounded-xl p-3.5 focus:outline-none focus:border-[#D4AF37] transition-colors';
+  const inputCls = 'w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-xl p-3.5 focus:outline-none focus:border-[#D4AF37] transition-colors';
   const selectCls = `${inputCls} appearance-none`;
 
   // ─── Wallet Cards (max 5 visible, horizontally scrollable, fade-right) ───
@@ -302,7 +302,7 @@ const Transfers = () => {
                   ? 'bg-[#D4AF37]/10 border-[#D4AF37]/40 ring-1 ring-[#D4AF37]/20'
                   : toCurrency === w.currency_code
                   ? 'bg-blue-500/10 border-blue-500/30'
-                  : 'bg-[#0B1221] border-gray-800 hover:border-gray-600'
+                  : 'bg-gray-50 dark:bg-[#0B1221] border-gray-200 dark:border-gray-800 hover:border-gray-600'
               }`}
             >
               <div className="flex items-center justify-between mb-2">
@@ -314,8 +314,8 @@ const Transfers = () => {
                   <span className="text-[9px] text-blue-400 font-bold uppercase tracking-wide bg-blue-500/10 px-1.5 py-0.5 rounded-full">TO</span>
                 )}
               </div>
-              <p className="text-xs text-gray-400 font-semibold">{w.currency_code}</p>
-              <p className="text-sm font-bold text-white mt-0.5 truncate">{formatBalance(w.balance, w.currency_code)}</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400 font-semibold">{w.currency_code}</p>
+              <p className="text-sm font-bold text-gray-900 dark:text-white mt-0.5 truncate">{formatBalance(w.balance, w.currency_code)}</p>
             </motion.button>
           ))}
         </div>
@@ -329,7 +329,7 @@ const Transfers = () => {
 
   // ─── Render ──────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-[#0B1221] text-white p-6 md:p-10 font-sans">
+    <div className="min-h-screen bg-gray-50 dark:bg-[#0B1221] text-gray-900 dark:text-white p-6 md:p-10 font-sans">
       {/* Confirmation Modal */}
       <AnimatePresence>
         {showConfirm && lockedRate && (
@@ -350,12 +350,12 @@ const Transfers = () => {
       <div className="max-w-4xl mx-auto">
         <header className="mb-10">
           <h1 className="text-3xl font-bold text-[#D4AF37] mb-2">Transfers</h1>
-          <p className="text-gray-400">Move funds between wallets or send wire transfers globally</p>
+          <p className="text-gray-600 dark:text-gray-400">Move funds between wallets or send wire transfers globally</p>
         </header>
 
-        <div className="bg-[#152336] rounded-2xl border border-gray-800 overflow-hidden shadow-2xl">
+        <div className="bg-white dark:bg-[#152336] rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-2xl">
           {/* Tabs */}
-          <div className="flex border-b border-gray-800">
+          <div className="flex border-b border-gray-200 dark:border-gray-800">
             {[
               { id: 'internal', icon: RefreshCcw, label: 'Internal Transfer' },
               { id: 'wire',     icon: Send,        label: 'Wire Transfer'     },
@@ -365,7 +365,7 @@ const Transfers = () => {
                 className={`flex-1 py-4 px-6 font-medium transition-colors flex items-center justify-center gap-2 ${
                   activeTab === tab.id
                     ? 'bg-[#1e3048] text-[#D4AF37] border-b-2 border-[#D4AF37]'
-                    : 'text-gray-400 hover:text-gray-200 hover:bg-[#0B1221]/50'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-200 hover:bg-gray-50 dark:bg-[#0B1221]/50'
                 }`}
                 onClick={() => { setActiveTab(tab.id); setAmount(''); }}
               >
@@ -382,13 +382,13 @@ const Transfers = () => {
                 {loadingData ? (
                   <div className="flex flex-col items-center justify-center py-16 gap-4">
                     <Loader2 className="animate-spin text-[#D4AF37]" size={36} />
-                    <p className="text-gray-400 text-sm">Loading your wallets...</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">Loading your wallets...</p>
                   </div>
                 ) : wallets.length < 2 ? (
                   <div className="text-center py-12">
                     <Wallet size={48} className="text-gray-600 mx-auto mb-4" />
-                    <p className="text-white font-semibold text-lg mb-2">You need at least 2 currency wallets</p>
-                    <p className="text-gray-400 text-sm">Go to your dashboard and add another currency wallet to enable internal transfers.</p>
+                    <p className="text-gray-900 dark:text-white font-semibold text-lg mb-2">You need at least 2 currency wallets</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">Go to your dashboard and add another currency wallet to enable internal transfers.</p>
                   </div>
                 ) : (
                   <div className="space-y-6">
@@ -398,7 +398,7 @@ const Transfers = () => {
                     <div className="flex items-end gap-3">
                       {/* FROM wallet */}
                       <div className="flex-1 space-y-2">
-                        <label className="text-xs font-semibold text-gray-400 uppercase tracking-widest block">From</label>
+                        <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest block">From</label>
                         <div className="relative">
                           <span className="absolute inset-y-0 left-3.5 flex items-center text-lg pointer-events-none">{CURRENCY_FLAGS[fromCurrency] || '🌐'}</span>
                           <select
@@ -416,7 +416,7 @@ const Transfers = () => {
                         </div>
                         <p className="text-xs pl-1 text-gray-500">
                           Balance:{' '}
-                          <span className={`font-semibold ${insufficient ? 'text-red-400' : 'text-gray-300'}`}>
+                          <span className={`font-semibold ${insufficient ? 'text-red-400' : 'text-gray-700 dark:text-gray-300'}`}>
                             {formatBalance(fromBalance, fromCurrency)}
                           </span>
                         </p>
@@ -437,7 +437,7 @@ const Transfers = () => {
 
                       {/* TO wallet */}
                       <div className="flex-1 space-y-2">
-                        <label className="text-xs font-semibold text-gray-400 uppercase tracking-widest block">To</label>
+                        <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest block">To</label>
                         <div className="relative">
                           <span className="absolute inset-y-0 left-3.5 flex items-center text-lg pointer-events-none">{CURRENCY_FLAGS[toCurrency] || '🌐'}</span>
                           <select
@@ -454,7 +454,7 @@ const Transfers = () => {
                           <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
                         </div>
                         <p className="text-xs pl-1 text-gray-500">
-                          Balance: <span className="font-semibold text-gray-300">{formatBalance(getBalance(toCurrency), toCurrency)}</span>
+                          Balance: <span className="font-semibold text-gray-700 dark:text-gray-300">{formatBalance(getBalance(toCurrency), toCurrency)}</span>
                         </p>
                       </div>
                     </div>
@@ -474,17 +474,17 @@ const Transfers = () => {
                     {/* Amount input */}
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <label className="text-xs font-semibold text-gray-400 uppercase tracking-widest block">Amount to Convert</label>
+                        <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest block">Amount to Convert</label>
                         <button
                           type="button"
                           onClick={() => setAmount(fromBalance.toFixed(2))}
-                          className="text-xs text-[#D4AF37] hover:text-white transition-colors font-semibold"
+                          className="text-xs text-[#D4AF37] hover:text-gray-900 dark:text-white transition-colors font-semibold"
                         >
                           Use Max
                         </button>
                       </div>
                       <div className="relative">
-                        <span className="absolute inset-y-0 left-4 flex items-center text-gray-400 font-semibold text-sm pointer-events-none">{fromCurrency}</span>
+                        <span className="absolute inset-y-0 left-4 flex items-center text-gray-600 dark:text-gray-400 font-semibold text-sm pointer-events-none">{fromCurrency}</span>
                         <input
                           type="number" min="0.01" step="0.01" required
                           value={amount}
@@ -513,7 +513,7 @@ const Transfers = () => {
                           className="rounded-xl bg-gradient-to-r from-[#D4AF37]/5 to-transparent border border-[#D4AF37]/20 p-5"
                         >
                           <div className="flex items-center justify-between mb-3">
-                            <span className="text-xs text-gray-400 font-semibold uppercase tracking-widest flex items-center gap-1.5">
+                            <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-widest flex items-center gap-1.5">
                               <TrendingUp size={13} className="text-[#D4AF37]" /> Live Preview
                             </span>
                             <span className="text-xs text-gray-500 font-mono">
@@ -522,14 +522,14 @@ const Transfers = () => {
                           </div>
                           <div className="flex items-center gap-4">
                             <div className="text-center flex-1">
-                              <p className="text-xs text-gray-400 mb-1">You Send</p>
-                              <p className="text-xl font-bold text-white font-mono">{formatBalance(parsedAmount, fromCurrency)}</p>
+                              <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">You Send</p>
+                              <p className="text-xl font-bold text-gray-900 dark:text-white font-mono">{formatBalance(parsedAmount, fromCurrency)}</p>
                             </div>
                             <motion.div animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 1.4 }}>
                               <ArrowRight className="text-[#D4AF37]" size={22} />
                             </motion.div>
                             <div className="text-center flex-1">
-                              <p className="text-xs text-gray-400 mb-1">You Receive</p>
+                              <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">You Receive</p>
                               <p className="text-xl font-bold text-[#D4AF37] font-mono">≈ {formatBalance(convertedAmt, toCurrency)}</p>
                             </div>
                           </div>
@@ -582,7 +582,7 @@ const Transfers = () => {
             {activeTab === 'wire' && (
               <form onSubmit={submitWireTransfer} className="space-y-6">
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold text-gray-400 uppercase tracking-widest block">Transfer Amount</label>
+                  <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest block">Transfer Amount</label>
                   <div className="flex gap-3">
                     <div className="relative w-36 flex-shrink-0">
                       <select
@@ -606,8 +606,8 @@ const Transfers = () => {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-gray-800 space-y-4">
-                  <h3 className="text-white font-semibold flex items-center gap-2">
+                <div className="pt-4 border-t border-gray-200 dark:border-gray-800 space-y-4">
+                  <h3 className="text-gray-900 dark:text-white font-semibold flex items-center gap-2">
                     <User size={18} className="text-[#D4AF37]" /> Recipient Details
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -139,57 +139,57 @@ const Settings = () => {
   return (
     <div className="p-6 max-w-4xl mx-auto space-y-8 pb-20">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white mb-2">Profile & Security Settings</h1>
-        <p className="text-gray-400">Manage your personal information, security preferences, and active sessions.</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Profile & Security Settings</h1>
+        <p className="text-gray-600 dark:text-gray-400">Manage your personal information, security preferences, and active sessions.</p>
       </div>
 
       {/* Personal Information Section */}
       <motion.section 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-[#152336] border border-white/5 rounded-xl overflow-hidden"
+        className="bg-white dark:bg-[#152336] border border-white/5 rounded-xl overflow-hidden"
       >
-        <div className="p-6 border-b border-gray-800 flex items-center gap-3">
+        <div className="p-6 border-b border-gray-200 dark:border-gray-800 flex items-center gap-3">
           <div className="p-2 bg-[#D4AF37]/10 rounded-lg text-[#D4AF37]">
             <User size={24} />
           </div>
-          <h2 className="text-xl font-bold text-white">Personal Information</h2>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white">Personal Information</h2>
         </div>
         
         <div className="p-6 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Full Name</label>
-              <div className="bg-[#0B1221]/50 border border-white/5 rounded-lg px-4 py-3 text-white/50 cursor-not-allowed">
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Full Name</label>
+              <div className="bg-gray-50 dark:bg-[#0B1221]/50 border border-white/5 rounded-lg px-4 py-3 text-gray-900 dark:text-white/50 cursor-not-allowed">
                 {user?.fullName}
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
-              <div className="bg-[#0B1221]/50 border border-white/5 rounded-lg px-4 py-3 text-white/50 cursor-not-allowed">
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Email Address</label>
+              <div className="bg-gray-50 dark:bg-[#0B1221]/50 border border-white/5 rounded-lg px-4 py-3 text-gray-900 dark:text-white/50 cursor-not-allowed">
                 {user?.email}
               </div>
             </div>
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-400 mb-2">Country of Residence</label>
-              <div className="bg-[#0B1221]/50 border border-white/5 rounded-lg px-4 py-3 text-white/50 cursor-not-allowed flex items-center gap-2">
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Country of Residence</label>
+              <div className="bg-gray-50 dark:bg-[#0B1221]/50 border border-white/5 rounded-lg px-4 py-3 text-gray-900 dark:text-white/50 cursor-not-allowed flex items-center gap-2">
                 <Globe size={18} />
                 {user?.country}
               </div>
             </div>
           </div>
 
-          <div className="border-t border-gray-800 pt-6">
+          <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
             <form onSubmit={handleUpdatePhone} className="flex flex-col md:flex-row items-end gap-4 mb-6">
               <div className="flex-1 w-full">
-                <label className="block text-sm font-medium text-gray-400 mb-2 flex items-center gap-2">
+                <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2 flex items-center gap-2">
                   <Phone size={16} /> Phone Number
                 </label>
                 <input
                   type="text"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  className="w-full bg-[#0B1221] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37] transition-colors"
+                  className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-[#D4AF37] transition-colors"
                   placeholder="+1 (555) 000-0000"
                 />
               </div>
@@ -204,14 +204,14 @@ const Settings = () => {
 
             <form onSubmit={handleUpdateAddress} className="flex flex-col items-end gap-4">
               <div className="w-full">
-                <label className="block text-sm font-medium text-gray-400 mb-2 flex items-center gap-2">
+                <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2 flex items-center gap-2">
                   <MapPin size={16} /> Residential Address
                 </label>
                 <textarea
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   rows="3"
-                  className="w-full bg-[#0B1221] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37] transition-colors resize-none"
+                  className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-[#D4AF37] transition-colors resize-none"
                   placeholder="Enter your full residential address"
                 />
               </div>
@@ -232,38 +232,38 @@ const Settings = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-[#152336] border border-white/5 rounded-xl overflow-hidden"
+        className="bg-white dark:bg-[#152336] border border-white/5 rounded-xl overflow-hidden"
       >
-        <div className="p-6 border-b border-gray-800 flex items-center gap-3">
+        <div className="p-6 border-b border-gray-200 dark:border-gray-800 flex items-center gap-3">
           <div className="p-2 bg-[#D4AF37]/10 rounded-lg text-[#D4AF37]">
             <Shield size={24} />
           </div>
-          <h2 className="text-xl font-bold text-white">Security</h2>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white">Security</h2>
         </div>
         
         <div className="p-6">
           <form onSubmit={handleUpdatePassword} className="space-y-4 max-w-md">
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2 flex items-center gap-2">
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2 flex items-center gap-2">
                 <Lock size={16} /> New Password
               </label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-[#0B1221] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37] transition-colors"
+                className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-[#D4AF37] transition-colors"
                 placeholder="Min. 8 characters"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2 flex items-center gap-2">
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2 flex items-center gap-2">
                 <Lock size={16} /> Confirm New Password
               </label>
               <input
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full bg-[#0B1221] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37] transition-colors"
+                className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-200 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-[#D4AF37] transition-colors"
                 placeholder="Confirm new password"
               />
             </div>
@@ -285,16 +285,16 @@ const Settings = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="bg-[#152336] border border-white/5 rounded-xl overflow-hidden"
+        className="bg-white dark:bg-[#152336] border border-white/5 rounded-xl overflow-hidden"
       >
-        <div className="p-6 border-b border-gray-800 flex items-center justify-between flex-wrap gap-4">
+        <div className="p-6 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between flex-wrap gap-4">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-[#D4AF37]/10 rounded-lg text-[#D4AF37]">
               <Monitor size={24} />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-white">Active Sessions</h2>
-              <p className="text-sm text-gray-400 mt-1">Devices currently logged into your account</p>
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">Active Sessions</h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Devices currently logged into your account</p>
             </div>
           </div>
           
@@ -315,7 +315,7 @@ const Settings = () => {
               <Loader2 size={24} className="animate-spin text-[#D4AF37]" />
             </div>
           ) : sessions.length === 0 ? (
-            <div className="p-8 text-center text-gray-400">
+            <div className="p-8 text-center text-gray-600 dark:text-gray-400">
               No active sessions found.
             </div>
           ) : (
@@ -328,19 +328,19 @@ const Settings = () => {
                 return (
                   <div key={session.id} className="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors">
                     <div className="flex items-start gap-4">
-                      <div className="p-3 bg-[#0B1221] rounded-lg text-gray-400 shrink-0">
+                      <div className="p-3 bg-gray-50 dark:bg-[#0B1221] rounded-lg text-gray-600 dark:text-gray-400 shrink-0">
                         {isMobile ? <Smartphone size={24} /> : <Monitor size={24} />}
                       </div>
                       <div>
                         <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-medium text-white">{os} • {browser}</h3>
+                          <h3 className="font-medium text-gray-900 dark:text-white">{os} • {browser}</h3>
                           {isCurrent && (
                             <span className="px-2 py-0.5 bg-green-500/10 text-green-400 text-xs font-medium rounded-full">
                               Current Session
                             </span>
                           )}
                         </div>
-                        <div className="space-y-1 text-sm text-gray-400">
+                        <div className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
                           <p className="flex items-center gap-1">
                             <MapPin size={14} /> {session.location || 'Unknown Location'} ({session.ip_address})
                           </p>
@@ -354,7 +354,7 @@ const Settings = () => {
                     {!isCurrent && (
                       <button 
                         onClick={() => handleTerminateSession(session.id)}
-                        className="self-start md:self-center flex items-center gap-2 px-3 py-1.5 text-sm text-gray-400 hover:text-red-400 hover:bg-red-400/10 rounded transition-colors"
+                        className="self-start md:self-center flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-red-400 hover:bg-red-400/10 rounded transition-colors"
                       >
                         <Trash2 size={16} />
                         Terminate

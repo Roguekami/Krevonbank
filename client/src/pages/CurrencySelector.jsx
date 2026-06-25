@@ -43,14 +43,14 @@ const CurrencySelector = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B1221] flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gray-50 dark:bg-[#0B1221] flex items-center justify-center p-6">
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }} 
         animate={{ opacity: 1, scale: 1 }}
-        className="max-w-xl w-full bg-[#152336] p-10 rounded-3xl border border-white/10 shadow-2xl text-center"
+        className="max-w-xl w-full bg-white dark:bg-[#152336] p-10 rounded-3xl border border-gray-200 dark:border-white/10 shadow-2xl text-center"
       >
         <h1 className="text-4xl font-serif text-[#D4AF37] mb-4">Welcome, {user?.full_name?.split(' ')[0]}!</h1>
-        <p className="text-gray-300 text-lg mb-8">
+        <p className="text-gray-700 dark:text-gray-300 text-lg mb-8">
           Your identity verification has been approved. To finalize your account setup, please select your primary operating currency.
         </p>
 
@@ -62,11 +62,11 @@ const CurrencySelector = () => {
               className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
                 selectedCurrency === c.code 
                   ? 'border-[#D4AF37] bg-[#D4AF37]/10' 
-                  : 'border-white/5 bg-[#0B1221]/50 hover:border-white/20'
+                  : 'border-white/5 bg-gray-50 dark:bg-[#0B1221]/50 hover:border-white/20'
               }`}
             >
               <div className="text-[#D4AF37] font-bold text-lg mb-1">{c.symbol} {c.code}</div>
-              <div className="text-xs text-gray-400">{c.name}</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">{c.name}</div>
             </div>
           ))}
         </div>

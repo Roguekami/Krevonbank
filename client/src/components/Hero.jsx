@@ -16,11 +16,11 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="max-w-2xl"
         >
-          <h1 className="text-6xl md:text-7xl font-bold leading-tight mb-6 text-white">
+          <h1 className="text-6xl md:text-7xl font-bold leading-tight mb-6 text-gray-900 dark:text-white">
             Krevon: Global <br />
             Banking, Elevated.
           </h1>
-          <p className="text-lg text-gray-300 mb-10 max-w-xl leading-relaxed">
+          <p className="text-lg text-gray-700 dark:text-gray-300 mb-10 max-w-xl leading-relaxed">
             Seamless international services, instant transfers, and effortless account opening. Your wealth, borderless.
           </p>
           
@@ -38,7 +38,7 @@ const Hero = () => {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="border border-white/30 hover:border-white text-white px-8 py-4 rounded-md font-bold text-lg backdrop-blur-sm transition-all"
+                className="border border-white/30 hover:border-white text-gray-900 dark:text-white px-8 py-4 rounded-md font-bold text-lg backdrop-blur-sm transition-all"
               >
                 Learn More
               </motion.button>

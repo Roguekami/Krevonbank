@@ -14,7 +14,7 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => (
       <Icon size={32} strokeWidth={1.5} />
     </div>
     <h3 className="text-xl font-bold mb-3">{title}</h3>
-    <p className="text-gray-400 leading-relaxed">{description}</p>
+    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{description}</p>
   </motion.div>
 );
 

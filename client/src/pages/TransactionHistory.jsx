@@ -110,16 +110,16 @@ const TransactionHistory = () => {
   });
 
   return (
-    <div className="min-h-screen bg-[#0B1221] text-white p-6 md:p-10 font-sans">
+    <div className="min-h-screen bg-gray-50 dark:bg-[#0B1221] text-gray-900 dark:text-white p-6 md:p-10 font-sans">
       <div className="max-w-6xl mx-auto space-y-8">
         
         {/* Header section (Export Statement) */}
         <header className="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-8">
           <div>
             <h1 className="text-3xl font-bold text-[#D4AF37] mb-2">Transaction History</h1>
-            <p className="text-gray-400">View and download your account activity</p>
+            <p className="text-gray-600 dark:text-gray-400">View and download your account activity</p>
           </div>
-          <div className="flex flex-col md:flex-row gap-3 items-end bg-[#152336] p-3 rounded-xl border border-gray-800">
+          <div className="flex flex-col md:flex-row gap-3 items-end bg-white dark:bg-[#152336] p-3 rounded-xl border border-gray-200 dark:border-gray-800">
             <div className="flex gap-2">
               <div>
                 <label className="block text-[10px] uppercase tracking-wider text-gray-500 mb-1">Start Date</label>
@@ -127,7 +127,7 @@ const TransactionHistory = () => {
                   type="date" 
                   value={exportStartDate}
                   onChange={(e) => setExportStartDate(e.target.value)}
-                  className="bg-[#0B1221] border border-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:border-[#D4AF37] text-sm"
+                  className="bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 focus:outline-none focus:border-[#D4AF37] text-sm"
                 />
               </div>
               <div>
@@ -136,7 +136,7 @@ const TransactionHistory = () => {
                   type="date" 
                   value={exportEndDate}
                   onChange={(e) => setExportEndDate(e.target.value)}
-                  className="bg-[#0B1221] border border-gray-700 text-white rounded-lg px-3 py-2 focus:outline-none focus:border-[#D4AF37] text-sm"
+                  className="bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 focus:outline-none focus:border-[#D4AF37] text-sm"
                 />
               </div>
             </div>
@@ -156,7 +156,7 @@ const TransactionHistory = () => {
         </header>
 
         {/* View Filters & Search */}
-        <div className="bg-[#152336] p-4 rounded-2xl border border-gray-800 flex flex-col md:flex-row gap-4 items-center justify-between relative">
+        <div className="bg-white dark:bg-[#152336] p-4 rounded-2xl border border-gray-200 dark:border-gray-800 flex flex-col md:flex-row gap-4 items-center justify-between relative">
           <div className="relative w-full md:w-96">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
             <input 
@@ -164,7 +164,7 @@ const TransactionHistory = () => {
               placeholder="Search by description, currency, status..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-[#0B1221] border border-gray-700 text-white rounded-xl py-2.5 pl-10 pr-4 focus:outline-none focus:border-[#D4AF37] transition-colors text-sm"
+              className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-xl py-2.5 pl-10 pr-4 focus:outline-none focus:border-[#D4AF37] transition-colors text-sm"
             />
           </div>
           <div className="flex gap-2 w-full md:w-auto relative">
@@ -173,32 +173,32 @@ const TransactionHistory = () => {
             <div className="relative">
               <button 
                 onClick={() => { setShowDateFilter(!showDateFilter); setShowTypeFilter(false); }}
-                className={`flex-1 md:flex-none flex items-center justify-center gap-2 border px-4 py-2.5 rounded-xl font-medium transition-colors text-sm ${showDateFilter || activeDateFiltersCount > 0 ? 'bg-[#D4AF37]/10 border-[#D4AF37]/40 text-[#D4AF37]' : 'bg-[#0B1221] border-gray-700 hover:border-gray-500 text-white'}`}
+                className={`flex-1 md:flex-none flex items-center justify-center gap-2 border px-4 py-2.5 rounded-xl font-medium transition-colors text-sm ${showDateFilter || activeDateFiltersCount > 0 ? 'bg-[#D4AF37]/10 border-[#D4AF37]/40 text-[#D4AF37]' : 'bg-gray-50 dark:bg-[#0B1221] border-gray-700 hover:border-gray-500 text-gray-900 dark:text-white'}`}
               >
-                <Calendar size={16} className={showDateFilter || activeDateFiltersCount > 0 ? 'text-[#D4AF37]' : 'text-gray-400'} />
+                <Calendar size={16} className={showDateFilter || activeDateFiltersCount > 0 ? 'text-[#D4AF37]' : 'text-gray-600 dark:text-gray-400'} />
                 Date Range
                 {activeDateFiltersCount > 0 && <span className="bg-[#D4AF37] text-[#0B1221] text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold ml-1">{activeDateFiltersCount}</span>}
               </button>
 
               {/* DATE RANGE DROPDOWN */}
               {showDateFilter && (
-                <div className="absolute right-0 top-full mt-2 w-64 bg-[#111A2C] border border-gray-700 rounded-xl shadow-2xl z-20 p-4">
+                <div className="absolute right-0 top-full mt-2 w-64 bg-gray-100 dark:bg-[#111A2C] border border-gray-700 rounded-xl shadow-2xl z-20 p-4">
                   <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-sm font-bold text-white">Filter by Date</h3>
-                    <button onClick={() => setShowDateFilter(false)} className="text-gray-400 hover:text-white"><X size={16}/></button>
+                    <h3 className="text-sm font-bold text-gray-900 dark:text-white">Filter by Date</h3>
+                    <button onClick={() => setShowDateFilter(false)} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white"><X size={16}/></button>
                   </div>
                   <div className="space-y-3">
                     <div>
-                      <label className="block text-xs text-gray-400 mb-1">From</label>
-                      <input type="date" value={filterStartDate} onChange={(e) => setFilterStartDate(e.target.value)} className="w-full bg-[#0B1221] border border-gray-700 text-white rounded-lg px-3 py-2 text-sm focus:border-[#D4AF37] outline-none" />
+                      <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">From</label>
+                      <input type="date" value={filterStartDate} onChange={(e) => setFilterStartDate(e.target.value)} className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm focus:border-[#D4AF37] outline-none" />
                     </div>
                     <div>
-                      <label className="block text-xs text-gray-400 mb-1">To</label>
-                      <input type="date" value={filterEndDate} onChange={(e) => setFilterEndDate(e.target.value)} className="w-full bg-[#0B1221] border border-gray-700 text-white rounded-lg px-3 py-2 text-sm focus:border-[#D4AF37] outline-none" />
+                      <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">To</label>
+                      <input type="date" value={filterEndDate} onChange={(e) => setFilterEndDate(e.target.value)} className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm focus:border-[#D4AF37] outline-none" />
                     </div>
                     <button 
                       onClick={() => { setFilterStartDate(''); setFilterEndDate(''); setShowDateFilter(false); }}
-                      className="w-full text-xs text-gray-400 hover:text-white mt-2 py-1"
+                      className="w-full text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white mt-2 py-1"
                     >
                       Clear Dates
                     </button>
@@ -211,25 +211,25 @@ const TransactionHistory = () => {
             <div className="relative">
               <button 
                 onClick={() => { setShowTypeFilter(!showTypeFilter); setShowDateFilter(false); }}
-                className={`flex-1 md:flex-none flex items-center justify-center gap-2 border px-4 py-2.5 rounded-xl font-medium transition-colors text-sm ${showTypeFilter || activeFiltersCount > 0 ? 'bg-[#D4AF37]/10 border-[#D4AF37]/40 text-[#D4AF37]' : 'bg-[#0B1221] border-gray-700 hover:border-gray-500 text-white'}`}
+                className={`flex-1 md:flex-none flex items-center justify-center gap-2 border px-4 py-2.5 rounded-xl font-medium transition-colors text-sm ${showTypeFilter || activeFiltersCount > 0 ? 'bg-[#D4AF37]/10 border-[#D4AF37]/40 text-[#D4AF37]' : 'bg-gray-50 dark:bg-[#0B1221] border-gray-700 hover:border-gray-500 text-gray-900 dark:text-white'}`}
               >
-                <Filter size={16} className={showTypeFilter || activeFiltersCount > 0 ? 'text-[#D4AF37]' : 'text-gray-400'} />
+                <Filter size={16} className={showTypeFilter || activeFiltersCount > 0 ? 'text-[#D4AF37]' : 'text-gray-600 dark:text-gray-400'} />
                 Filters
                 {activeFiltersCount > 0 && <span className="bg-[#D4AF37] text-[#0B1221] text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold ml-1">{activeFiltersCount}</span>}
               </button>
 
               {/* FILTERS DROPDOWN */}
               {showTypeFilter && (
-                <div className="absolute right-0 top-full mt-2 w-56 bg-[#111A2C] border border-gray-700 rounded-xl shadow-2xl z-20 p-4">
+                <div className="absolute right-0 top-full mt-2 w-56 bg-gray-100 dark:bg-[#111A2C] border border-gray-700 rounded-xl shadow-2xl z-20 p-4">
                   <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-sm font-bold text-white">Status & Type</h3>
-                    <button onClick={() => setShowTypeFilter(false)} className="text-gray-400 hover:text-white"><X size={16}/></button>
+                    <h3 className="text-sm font-bold text-gray-900 dark:text-white">Status & Type</h3>
+                    <button onClick={() => setShowTypeFilter(false)} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white"><X size={16}/></button>
                   </div>
                   
                   <div className="space-y-4">
                     <div>
                       <label className="block text-xs uppercase tracking-wider text-gray-500 mb-2">Status</label>
-                      <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="w-full bg-[#0B1221] border border-gray-700 text-white rounded-lg px-3 py-2 text-sm focus:border-[#D4AF37] outline-none">
+                      <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm focus:border-[#D4AF37] outline-none">
                         <option value="all">All Statuses</option>
                         <option value="completed">Completed</option>
                         <option value="pending">Pending</option>
@@ -238,7 +238,7 @@ const TransactionHistory = () => {
                     </div>
                     <div>
                       <label className="block text-xs uppercase tracking-wider text-gray-500 mb-2">Type</label>
-                      <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="w-full bg-[#0B1221] border border-gray-700 text-white rounded-lg px-3 py-2 text-sm focus:border-[#D4AF37] outline-none">
+                      <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm focus:border-[#D4AF37] outline-none">
                         <option value="all">All Types</option>
                         <option value="deposit">Deposit</option>
                         <option value="internal_transfer">Internal Transfer</option>
@@ -247,7 +247,7 @@ const TransactionHistory = () => {
                     </div>
                     <button 
                       onClick={() => { setFilterStatus('all'); setFilterType('all'); setShowTypeFilter(false); }}
-                      className="w-full text-xs text-gray-400 hover:text-white mt-1 py-1"
+                      className="w-full text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white mt-1 py-1"
                     >
                       Clear Filters
                     </button>
@@ -260,7 +260,7 @@ const TransactionHistory = () => {
         </div>
 
         {/* Transactions Table/List */}
-        <div className="bg-[#152336] rounded-2xl border border-gray-800 overflow-hidden">
+        <div className="bg-white dark:bg-[#152336] rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
           {loading ? (
             <div className="p-12 flex justify-center">
               <div className="w-10 h-10 border-4 border-[#0B1221] border-t-[#D4AF37] rounded-full animate-spin"></div>
@@ -268,14 +268,14 @@ const TransactionHistory = () => {
           ) : filteredTransactions.length === 0 ? (
             <div className="p-16 flex flex-col items-center justify-center text-gray-500">
               <Calendar size={48} className="mb-4 text-gray-700" />
-              <p className="text-lg font-medium text-gray-400">No transactions found</p>
+              <p className="text-lg font-medium text-gray-600 dark:text-gray-400">No transactions found</p>
               <p className="text-sm mt-1">Try adjusting your search or filters.</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-[#0B1221] text-gray-400 text-xs uppercase tracking-wider border-b border-gray-800">
+                  <tr className="bg-gray-50 dark:bg-[#0B1221] text-gray-600 dark:text-gray-400 text-xs uppercase tracking-wider border-b border-gray-200 dark:border-gray-800">
                     <th className="p-4 font-medium">Date</th>
                     <th className="p-4 font-medium">Description</th>
                     <th className="p-4 font-medium">Type</th>
@@ -287,8 +287,8 @@ const TransactionHistory = () => {
                   {filteredTransactions.map((tx) => {
                     const isPositive = tx.type === 'deposit' || tx.type === 'bank_funding' || tx.amount > 0;
                     return (
-                      <tr key={tx.id || tx._id} className="hover:bg-[#0B1221]/40 transition-colors">
-                        <td className="p-4 whitespace-nowrap text-sm text-gray-300">
+                      <tr key={tx.id || tx._id} className="hover:bg-gray-50 dark:bg-[#0B1221]/40 transition-colors">
+                        <td className="p-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
                           {new Date(tx.created_at || tx.createdAt).toLocaleDateString(undefined, { 
                             year: 'numeric', month: 'short', day: 'numeric', 
                             hour: '2-digit', minute: '2-digit' 
@@ -306,7 +306,7 @@ const TransactionHistory = () => {
                           </div>
                         </td>
                         <td className="p-4 whitespace-nowrap">
-                          <span className="text-xs font-medium px-2.5 py-1 bg-[#0B1221] text-gray-300 rounded-md border border-gray-700 capitalize">
+                          <span className="text-xs font-medium px-2.5 py-1 bg-gray-50 dark:bg-[#0B1221] text-gray-700 dark:text-gray-300 rounded-md border border-gray-700 capitalize">
                             {(tx.transferType || tx.type || 'Transfer').replace('_', ' ')}
                           </span>
                         </td>
@@ -315,12 +315,12 @@ const TransactionHistory = () => {
                             tx.status === 'completed' || tx.status === 'success' ? 'bg-green-500/10 text-green-400 border-green-500/20' : 
                             tx.status === 'pending' ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' : 
                             tx.status === 'failed' ? 'bg-red-500/10 text-red-400 border-red-500/20' : 
-                            'bg-gray-500/10 text-gray-400 border-gray-500/20'
+                            'bg-gray-500/10 text-gray-600 dark:text-gray-400 border-gray-500/20'
                           } capitalize`}>
                             {tx.status || 'Completed'}
                           </span>
                         </td>
-                        <td className={`p-4 whitespace-nowrap text-right font-mono font-medium ${isPositive ? 'text-green-500' : 'text-white'}`}>
+                        <td className={`p-4 whitespace-nowrap text-right font-mono font-medium ${isPositive ? 'text-green-500' : 'text-gray-900 dark:text-white'}`}>
                           {isPositive ? '+' : ''}{tx.amount?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} {tx.currency_code}
                         </td>
                       </tr>

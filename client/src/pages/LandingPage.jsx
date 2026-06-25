@@ -95,11 +95,11 @@ const LandingPage = () => {
               transition={{ duration: 0.8 }}
               className="max-w-2xl"
             >
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-white tracking-tight">
+              <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-gray-900 dark:text-white tracking-tight">
                 Krevon: Global <br />
                 Banking, Elevated.
               </h1>
-              <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-xl leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-10 max-w-xl leading-relaxed">
                 Seamless international services, instant transfers, and effortless account opening. Your wealth, borderless.
               </p>
               
@@ -117,7 +117,7 @@ const LandingPage = () => {
                   <motion.button 
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="border border-white/30 hover:border-white text-white px-8 py-4 rounded-md font-bold text-lg backdrop-blur-sm transition-all"
+                    className="border border-white/30 hover:border-white text-gray-900 dark:text-white px-8 py-4 rounded-md font-bold text-lg backdrop-blur-sm transition-all"
                   >
                     Learn More
                   </motion.button>
@@ -128,7 +128,7 @@ const LandingPage = () => {
         </section>
 
         {/* Stats Strip */}
-        <section className="bg-[#111A2C] py-12 border-y border-white/5 relative z-10">
+        <section className="bg-gray-100 dark:bg-[#111A2C] py-12 border-y border-white/5 relative z-10">
           <div className="max-w-7xl mx-auto px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
@@ -141,7 +141,7 @@ const LandingPage = () => {
                   className="text-center"
                 >
                   <div className="text-3xl md:text-4xl font-bold text-brand-gold mb-2">{stat.value}</div>
-                  <div className="text-sm md:text-base text-gray-400 font-medium">{stat.label}</div>
+                  <div className="text-sm md:text-base text-gray-600 dark:text-gray-400 font-medium">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -152,8 +152,8 @@ const LandingPage = () => {
         <section className="py-20 px-8 bg-brand-navy">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Everything You Need in One Platform</h2>
-              <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+              <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Everything You Need in One Platform</h2>
+              <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
                 Krevon brings together the best of traditional banking and modern fintech into a single powerful platform.
               </p>
             </div>
@@ -168,13 +168,13 @@ const LandingPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1, duration: 0.5 }}
-                    className="flex flex-col items-start p-8 bg-[#111A2C] rounded-xl border border-white/5 hover:border-brand-gold/30 transition-colors shadow-lg"
+                    className="flex flex-col items-start p-8 bg-gray-100 dark:bg-[#111A2C] rounded-xl border border-white/5 hover:border-brand-gold/30 transition-colors shadow-lg"
                   >
                     <div className="w-14 h-14 rounded-lg bg-brand-gold/10 flex items-center justify-center mb-6 text-brand-gold">
                       <Icon size={28} strokeWidth={1.5} />
                     </div>
-                    <h3 className="text-xl font-bold mb-3 text-white">{feature.title}</h3>
-                    <p className="text-gray-400 leading-relaxed">{feature.description}</p>
+                    <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{feature.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{feature.description}</p>
                   </motion.div>
                 );
               })}
@@ -186,8 +186,8 @@ const LandingPage = () => {
         <section className="py-20 px-8 bg-[#0f172a]/80">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Banking Made Simple</h2>
-              <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+              <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Banking Made Simple</h2>
+              <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
                 Get started with Krevon in three easy steps.
               </p>
             </div>
@@ -207,8 +207,8 @@ const LandingPage = () => {
                   <div className="w-24 h-24 rounded-full bg-brand-navy border-2 border-brand-gold flex items-center justify-center text-3xl font-bold text-brand-gold mb-8 shadow-[0_0_20px_rgba(212,175,55,0.2)]">
                     {step.number}
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">{step.title}</h3>
-                  <p className="text-gray-400 leading-relaxed max-w-xs">{step.description}</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{step.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed max-w-xs">{step.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -224,8 +224,8 @@ const LandingPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Ready to Experience Global Banking?</h2>
-              <p className="text-xl text-gray-300 mb-10 leading-relaxed">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">Ready to Experience Global Banking?</h2>
+              <p className="text-xl text-gray-700 dark:text-gray-300 mb-10 leading-relaxed">
                 Join thousands of customers who trust Krevon with their finances every day. Open your account in minutes, no branch visit required.
               </p>
               <Link to="/register">

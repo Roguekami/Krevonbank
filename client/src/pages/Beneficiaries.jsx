@@ -62,14 +62,14 @@ const Beneficiaries = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B1221] text-gray-100 p-6">
+    <div className="min-h-screen bg-gray-50 dark:bg-[#0B1221] text-gray-100 p-6">
       <div className="max-w-6xl mx-auto space-y-8">
         
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-white tracking-tight">Beneficiaries</h1>
-            <p className="text-gray-400 mt-1">Manage your saved accounts for quick transfers.</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">Beneficiaries</h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-1">Manage your saved accounts for quick transfers.</p>
           </div>
           <button
             onClick={() => setIsAdding(!isAdding)}
@@ -89,14 +89,14 @@ const Beneficiaries = () => {
 
         {/* Add Beneficiary Form */}
         {isAdding && (
-          <div className="bg-[#152336] rounded-xl p-6 border border-gray-800 shadow-xl animate-in fade-in slide-in-from-top-4 duration-300">
-            <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+          <div className="bg-white dark:bg-[#152336] rounded-xl p-6 border border-gray-200 dark:border-gray-800 shadow-xl animate-in fade-in slide-in-from-top-4 duration-300">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
               <User className="text-[#D4AF37]" size={24} />
               New Beneficiary Details
             </h2>
             <form onSubmit={handleAdd} className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-400">Account Holder Name</label>
+                <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Account Holder Name</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <User size={18} className="text-gray-500" />
@@ -107,14 +107,14 @@ const Beneficiaries = () => {
                     required
                     value={formData.fullName}
                     onChange={handleChange}
-                    className="w-full bg-[#0B1221] border border-gray-700 text-white rounded-lg pl-10 py-2.5 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent transition-all outline-none"
+                    className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg pl-10 py-2.5 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent transition-all outline-none"
                     placeholder="John Doe"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-400">Account Number</label>
+                <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Account Number</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <CreditCard size={18} className="text-gray-500" />
@@ -125,14 +125,14 @@ const Beneficiaries = () => {
                     required
                     value={formData.accountNumber}
                     onChange={handleChange}
-                    className="w-full bg-[#0B1221] border border-gray-700 text-white rounded-lg pl-10 py-2.5 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent transition-all outline-none"
+                    className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg pl-10 py-2.5 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent transition-all outline-none"
                     placeholder="1234567890"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-400">Bank Name</label>
+                <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Bank Name</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <Building2 size={18} className="text-gray-500" />
@@ -143,14 +143,14 @@ const Beneficiaries = () => {
                     required
                     value={formData.bankName}
                     onChange={handleChange}
-                    className="w-full bg-[#0B1221] border border-gray-700 text-white rounded-lg pl-10 py-2.5 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent transition-all outline-none"
+                    className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg pl-10 py-2.5 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent transition-all outline-none"
                     placeholder="Chase Bank"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-400">SWIFT / IBAN Code</label>
+                <label className="text-sm font-medium text-gray-600 dark:text-gray-400">SWIFT / IBAN Code</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <Globe size={18} className="text-gray-500" />
@@ -161,19 +161,19 @@ const Beneficiaries = () => {
                     required
                     value={formData.swiftIban}
                     onChange={handleChange}
-                    className="w-full bg-[#0B1221] border border-gray-700 text-white rounded-lg pl-10 py-2.5 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent transition-all outline-none uppercase"
+                    className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg pl-10 py-2.5 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent transition-all outline-none uppercase"
                     placeholder="SWIFT or IBAN Code"
                   />
                 </div>
               </div>
 
               <div className="space-y-2 md:col-span-2">
-                <label className="text-sm font-medium text-gray-400">Currency</label>
+                <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Currency</label>
                 <select
                   name="currencyCode"
                   value={formData.currencyCode}
                   onChange={handleChange}
-                  className="w-full bg-[#0B1221] border border-gray-700 text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent outline-none"
+                  className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent outline-none"
                 >
                   {['USD','EUR','GBP','NGN','CAD','JPY','CHF','AUD'].map(c => (
                     <option key={c} value={c}>{c}</option>
@@ -200,15 +200,15 @@ const Beneficiaries = () => {
             <Loader2 className="animate-spin text-[#D4AF37]" size={40} />
           </div>
         ) : beneficiaries.length === 0 ? (
-          <div className="bg-[#152336] rounded-xl p-12 text-center border border-gray-800">
+          <div className="bg-white dark:bg-[#152336] rounded-xl p-12 text-center border border-gray-200 dark:border-gray-800">
             <User size={48} className="mx-auto text-gray-600 mb-4" />
-            <h3 className="text-xl font-medium text-white mb-2">No beneficiaries found</h3>
-            <p className="text-gray-400">Add a beneficiary to easily make transfers later.</p>
+            <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-2">No beneficiaries found</h3>
+            <p className="text-gray-600 dark:text-gray-400">Add a beneficiary to easily make transfers later.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {beneficiaries.map((b) => (
-              <div key={b.id} className="bg-[#152336] rounded-xl p-6 border border-gray-800 hover:border-[#D4AF37]/50 transition-colors duration-300 group">
+              <div key={b.id} className="bg-white dark:bg-[#152336] rounded-xl p-6 border border-gray-200 dark:border-gray-800 hover:border-[#D4AF37]/50 transition-colors duration-300 group">
                 <div className="flex justify-between items-start mb-4">
                   <div className="h-12 w-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37]">
                     <User size={24} />
@@ -222,19 +222,19 @@ const Beneficiaries = () => {
                   </button>
                 </div>
                 
-                <h3 className="text-lg font-bold text-white mb-1">{b.full_name}</h3>
-                <p className="text-sm text-gray-400 flex items-center gap-2 mb-3">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{b.full_name}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2 mb-3">
                   <Building2 size={14} /> {b.bank_name}
                 </p>
                 
-                <div className="space-y-2 pt-4 border-t border-gray-800">
+                <div className="space-y-2 pt-4 border-t border-gray-200 dark:border-gray-800">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-500">Account</span>
-                    <span className="text-gray-300 font-mono">{b.account_number}</span>
+                    <span className="text-gray-700 dark:text-gray-300 font-mono">{b.account_number}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-500">SWIFT/IBAN</span>
-                    <span className="text-gray-300 font-mono">{b.swift_iban}</span>
+                    <span className="text-gray-700 dark:text-gray-300 font-mono">{b.swift_iban}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-500">Currency</span>
