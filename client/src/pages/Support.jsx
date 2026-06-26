@@ -63,14 +63,18 @@ const Support = () => {
         body: JSON.stringify(formData)
       });
       
+      const data = await response.json();
+      
       if (response.ok) {
         setSuccessMsg('Thank you for reaching out. We have received your message and will respond to your registered email within 2 to 4 business hours.');
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        throw new Error('Formspree returned an error');
+        console.error('Formspree error:', data);
+        toast.error(data?.errors?.[0]?.message || data?.error || 'Failed to send message. Please try again later.');
       }
     } catch (error) {
-      toast.error('Failed to send message. Please try again later.');
+      console.error('Network error:', error);
+      toast.error('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
