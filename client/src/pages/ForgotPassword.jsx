@@ -53,7 +53,15 @@ const ForgotPassword = () => {
           <div className="text-center bg-gray-50 dark:bg-[#0B1221] p-6 rounded-xl border border-white/5">
             <svg className="w-16 h-16 text-[#D4AF37] mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             <h3 className="text-xl text-gray-900 dark:text-white font-medium mb-2">Check your inbox</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">We've sent a password reset link to <br/><span className="text-gray-900 dark:text-white font-medium">{email}</span></p>
+            <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+              We've sent a password reset link to <br/>
+              <span className="text-gray-900 dark:text-white font-medium">{email}</span>
+            </p>
+            <div className="bg-[#D4AF37]/10 border border-[#D4AF37]/20 rounded-lg p-3 mt-4">
+              <p className="text-xs text-[#D4AF37]">
+                <span className="font-semibold">Didn't receive it?</span> Please check your spam or junk folder.
+              </p>
+            </div>
           </div>
         )}
 
