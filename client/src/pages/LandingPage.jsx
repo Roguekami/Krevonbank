@@ -103,21 +103,30 @@ const LandingPage = () => {
                 Seamless international services, instant transfers, and effortless account opening. Your wealth, borderless.
               </p>
               
-              <div className="flex flex-wrap items-center gap-6">
+              <div className="flex flex-wrap items-center gap-4 md:gap-6">
                 <Link to="/register">
                   <motion.button 
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-brand-gold text-brand-navy px-8 py-4 rounded-md font-bold text-lg transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+                    className="bg-brand-gold text-brand-navy px-6 md:px-8 py-3 md:py-4 rounded-md font-bold text-base md:text-lg transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
                   >
                     Open Account
+                  </motion.button>
+                </Link>
+                <Link to="/login">
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-[#152336] text-white border border-white/10 hover:border-brand-gold px-6 md:px-8 py-3 md:py-4 rounded-md font-bold text-base md:text-lg transition-all"
+                  >
+                    Sign In
                   </motion.button>
                 </Link>
                 <Link to="/about">
                   <motion.button 
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="border border-white/30 hover:border-white text-gray-900 dark:text-white px-8 py-4 rounded-md font-bold text-lg backdrop-blur-sm transition-all"
+                    className="border border-white/30 hover:border-white text-gray-900 dark:text-white px-6 md:px-8 py-3 md:py-4 rounded-md font-bold text-base md:text-lg backdrop-blur-sm transition-all"
                   >
                     Learn More
                   </motion.button>
