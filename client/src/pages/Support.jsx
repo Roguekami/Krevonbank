@@ -54,11 +54,23 @@ const Support = () => {
     setIsSubmitting(true);
     setSuccessMsg('');
     try {
-      await api.post('/support/contact', formData);
-      setSuccessMsg('Thank you for reaching out. We have received your message and will respond to your registered email within 2 to 4 business hours.');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      const response = await fetch('https://formspree.io/f/xkolrpyr', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        setSuccessMsg('Thank you for reaching out. We have received your message and will respond to your registered email within 2 to 4 business hours.');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error('Formspree returned an error');
+      }
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Failed to send message. Please try again later.');
+      toast.error('Failed to send message. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
