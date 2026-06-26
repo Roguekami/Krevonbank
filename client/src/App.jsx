@@ -46,16 +46,13 @@ function App() {
             {/* Open Routes - Accessible to EVERYONE regardless of auth state */}
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/verify-email" element={<VerifyEmail />} />
             <Route path="/about" element={<About />} />
             <Route path="/support" element={<Support />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
-
-            {/* Verification & KYC - Minimal Layouts */}
-            <Route element={<ProtectedRoute />}>
-              <Route path="/verify-email" element={<VerifyEmail />} />
-            </Route>
             
+            {/* KYC Routing */}
             <Route element={<VerifiedRoute />}>
               <Route path="/kyc-onboarding" element={<KYCOnboarding />} />
             </Route>
