@@ -127,7 +127,7 @@ const TransactionHistory = () => {
                   type="date" 
                   value={exportStartDate}
                   onChange={(e) => setExportStartDate(e.target.value)}
-                  className="bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 focus:outline-none focus:border-[#D4AF37] text-sm"
+                  className="bg-gray-50 dark:bg-[#0B1221] border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 focus:outline-none focus:border-[#D4AF37] text-sm [color-scheme:light] dark:[color-scheme:dark]"
                 />
               </div>
               <div>
@@ -136,7 +136,7 @@ const TransactionHistory = () => {
                   type="date" 
                   value={exportEndDate}
                   onChange={(e) => setExportEndDate(e.target.value)}
-                  className="bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 focus:outline-none focus:border-[#D4AF37] text-sm"
+                  className="bg-gray-50 dark:bg-[#0B1221] border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg px-3 py-2 focus:outline-none focus:border-[#D4AF37] text-sm [color-scheme:light] dark:[color-scheme:dark]"
                 />
               </div>
             </div>
