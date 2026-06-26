@@ -22,7 +22,7 @@ const Register = () => {
       if (res.data.autoVerified) {
         toast.success('Account created! You can now log in.', { duration: 5000 });
       } else {
-        toast.success(res.data.message || 'Check your email to verify your account.', { duration: 6000 });
+        toast.success(res.data.message || 'Check your email (including spam) to verify your account.', { duration: 6000 });
       }
       navigate('/login');
     } catch (error) {

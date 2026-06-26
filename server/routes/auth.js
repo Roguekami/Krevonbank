@@ -74,7 +74,7 @@ router.post('/register', [
 
     if (emailSent) {
       return res.status(201).json({
-        message: 'Account created! Please check your email to verify your account.',
+        message: 'Account created! Please check your email (and spam folder) to verify your account.',
       });
     }
 
@@ -198,7 +198,7 @@ router.post('/forgot-password', authLimiter, [
     const user = await findUserByEmail(email);
     if (!user) {
       // Don't leak whether the email exists for security
-      return res.status(200).json({ message: 'If an account with that email exists, a password reset link has been sent.' });
+      return res.status(200).json({ message: 'If an account with that email exists, a link has been sent (please check your spam folder).' });
     }
 
     const resetToken = crypto.randomBytes(32).toString('hex');
@@ -208,7 +208,7 @@ router.post('/forgot-password', authLimiter, [
 
     try {
       await sendPasswordResetEmail(email, user.full_name, resetToken);
-      return res.status(200).json({ message: 'If an account with that email exists, a password reset link has been sent.' });
+      return res.status(200).json({ message: 'If an account with that email exists, a link has been sent (please check your spam folder).' });
     } catch (emailError) {
       console.warn('Reset email sending failed:', emailError.message);
       if (process.env.NODE_ENV !== 'production') {
