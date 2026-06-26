@@ -36,18 +36,20 @@ function App() {
         <AuthProvider>
           <Router>
             <Routes>
-            {/* Public Routes - Redirect to dashboard if logged in */}
+            {/* Public Routes - Redirect to dashboard if already logged in */}
             <Route element={<PublicRoute />}>
               <Route path="/" element={<LandingPage />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/support" element={<Support />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/privacy" element={<Privacy />} />
             </Route>
+
+            {/* Open Routes - Accessible to EVERYONE regardless of auth state */}
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/support" element={<Support />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
 
             {/* Verification & KYC - Minimal Layouts */}
             <Route element={<ProtectedRoute />}>
