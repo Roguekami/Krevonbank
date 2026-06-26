@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import toast from 'react-hot-toast';
 import api from '../services/api';
+import { countries } from '../utils/countries';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -64,10 +65,10 @@ const Register = () => {
           <div>
             <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1.5 transition-colors duration-200">Country of Residence</label>
             <select required className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-300 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-[#D4AF37] dark:focus:border-[#D4AF37] transition-colors duration-200" value={formData.country} onChange={e => setFormData({...formData, country: e.target.value})}>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="United States">United States</option>
-              <option value="Nigeria">Nigeria</option>
-              <option value="Canada">Canada</option>
+              <option value="" disabled>Select your country</option>
+              {countries.map(country => (
+                <option key={country} value={country}>{country}</option>
+              ))}
             </select>
           </div>
 
