@@ -96,23 +96,14 @@ const Support = () => {
         {/* Contact Details Strip */}
         <section className="border-y border-gray-200 dark:border-white/10 bg-[#0f172a]/50">
           <div className="max-w-7xl mx-auto px-8 py-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm text-gray-700 dark:text-gray-300">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-700 dark:text-gray-300">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center shrink-0">
                   <Mail className="w-5 h-5 text-brand-gold" />
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900 dark:text-white mb-0.5">Email</div>
-                  <a href="mailto:support@krevon.com" className="hover:text-brand-gold transition-colors block">support@krevon.com</a>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center shrink-0">
-                  <Phone className="w-5 h-5 text-brand-gold" />
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900 dark:text-white mb-0.5">Phone</div>
-                  <span>+44 20 0000 0000</span>
+                  <a href="mailto:krevonbank@gmail.com" className="hover:text-brand-gold transition-colors block">krevonbank@gmail.com</a>
                 </div>
               </div>
               <div className="flex items-center gap-4">
