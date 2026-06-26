@@ -189,7 +189,7 @@ const Dashboard = () => {
         <div className="bg-white dark:bg-[#152336] rounded-2xl p-6 border border-gray-200 dark:border-gray-800">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Recent Transactions</h3>
-            <Link to="/transactions" className="text-[#D4AF37] hover:text-[#b5952f] text-sm font-medium transition-colors">
+            <Link to="/history" className="text-[#D4AF37] hover:text-[#b5952f] text-sm font-medium transition-colors">
               View All
             </Link>
           </div>
