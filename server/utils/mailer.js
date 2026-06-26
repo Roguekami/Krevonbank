@@ -78,8 +78,9 @@ const sendKYCApprovalEmail = async (email, fullName) => {
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #1a1f36;">Congratulations, ${fullName}!</h2>
         <p>Your identity has been successfully verified. You now have full access to all Krevon banking features.</p>
-        <a href="${process.env.CLIENT_URL}/dashboard" style="display:inline-block;padding:12px 24px;background:#d4af37;color:#1a1f36;font-weight:bold;border-radius:6px;text-decoration:none;">
-          Go to Dashboard
+        <p>Log in to your account to get started:</p>
+        <a href="${process.env.CLIENT_URL}/login" style="display:inline-block;padding:12px 24px;background:#d4af37;color:#1a1f36;font-weight:bold;border-radius:6px;text-decoration:none;">
+          Log In to Dashboard
         </a>
         <p style="color:#666;margin-top:24px;">— Krevon Team</p>
       </div>
@@ -141,8 +142,8 @@ const sendBalanceCreditEmail = async (email, fullName, currency, amount, note) =
         </div>
         ${note ? `<p><strong>Note:</strong> ${note}</p>` : ''}
         <p>If you did not expect this transaction, please contact our support team immediately.</p>
-        <a href="${process.env.CLIENT_URL}/dashboard" style="display:inline-block;padding:12px 24px;background:#d4af37;color:#1a1f36;font-weight:bold;border-radius:6px;text-decoration:none;">
-          View Dashboard
+        <a href="${process.env.CLIENT_URL}/login" style="display:inline-block;padding:12px 24px;background:#d4af37;color:#1a1f36;font-weight:bold;border-radius:6px;text-decoration:none;">
+          Log In to View
         </a>
         <p style="color:#666;margin-top:24px;">— Krevon Team</p>
       </div>
@@ -171,8 +172,8 @@ const sendTransferApprovalEmail = async (email, fullName, amount, currency, reci
         </div>
         ${!isApproved ? '<p>The transfer amount has been refunded to your account balance.</p>' : ''}
         <p>If you have any questions about this transaction, please contact our support team.</p>
-        <a href="${process.env.CLIENT_URL}/history" style="display:inline-block;padding:12px 24px;background:#d4af37;color:#1a1f36;font-weight:bold;border-radius:6px;text-decoration:none;">
-          View Transaction History
+        <a href="${process.env.CLIENT_URL}/login" style="display:inline-block;padding:12px 24px;background:#d4af37;color:#1a1f36;font-weight:bold;border-radius:6px;text-decoration:none;">
+          Log In to View
         </a>
         <p style="color:#666;margin-top:24px;">— Krevon Team</p>
       </div>
