@@ -1,19 +1,19 @@
 const { pool } = require('../config/db');
 
 const createTransaction = async ({
-  senderAccountId, receiverAccountId, type, amount, currencyCode,
+  senderAccountId, receiverAccountId, type, status = 'pending', amount, currencyCode,
   exchangeRate, convertedAmount, convertedCurrency,
   recipientName, recipientBankName, recipientAccountNumber, recipientSwiftIban, description
 }) => {
   const result = await pool.query(
     `INSERT INTO transactions
-     (sender_account_id, receiver_account_id, type, amount, currency_code, exchange_rate,
+     (sender_account_id, receiver_account_id, type, status, amount, currency_code, exchange_rate,
       converted_amount, converted_currency, recipient_name, recipient_bank_name,
       recipient_account_number, recipient_swift_iban, description)
-     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)
+     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)
      RETURNING *`,
     [
-      senderAccountId, receiverAccountId, type, amount, currencyCode,
+      senderAccountId, receiverAccountId, type, status, amount, currencyCode,
       exchangeRate || null, convertedAmount || null, convertedCurrency || null,
       recipientName || null, recipientBankName || null,
       recipientAccountNumber || null, recipientSwiftIban || null, description || null

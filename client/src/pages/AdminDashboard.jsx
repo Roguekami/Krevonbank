@@ -47,6 +47,11 @@ const AdminDashboard = ({ tab }) => {
   const [statementStartDate, setStatementStartDate] = useState('');
   const [statementEndDate, setStatementEndDate] = useState('');
   const [exportingStatementId, setExportingStatementId] = useState(null);
+  const [expandedBalances, setExpandedBalances] = useState({});
+
+  const toggleBalances = (id) => {
+    setExpandedBalances(prev => ({ ...prev, [id]: !prev[id] }));
+  };
 
   const fetchKYC = async () => {
     try {
@@ -660,10 +665,21 @@ const AdminDashboard = ({ tab }) => {
                           </div>
 
                           <div className="mb-4 pt-4 border-t border-gray-200 dark:border-gray-800 space-y-2">
-                            <div className="text-sm text-gray-600 dark:text-gray-400">Account Balances</div>
+                            <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-400">
+                              <span>Account Balances</span>
+                              {user.balances && user.balances.length > 1 && (
+                                <button 
+                                  onClick={() => toggleBalances(user.id)}
+                                  className="text-[#D4AF37] hover:underline text-xs"
+                                >
+                                  {expandedBalances[user.id] ? 'Hide' : `+${user.balances.length - 1} more`}
+                                </button>
+                              )}
+                            </div>
+                            
                             {user.balances && user.balances.length > 0 ? (
                               <div className="flex flex-col gap-1">
-                                {user.balances.map((b, idx) => (
+                                {user.balances.slice(0, expandedBalances[user.id] ? user.balances.length : 1).map((b, idx) => (
                                   <div key={idx} className="flex justify-between items-center text-sm font-mono bg-gray-50 dark:bg-[#0B1221] px-3 py-1.5 rounded">
                                     <span className="text-gray-500 dark:text-gray-400">{b.currency_code}</span>
                                     <span className="text-[#D4AF37] font-semibold">
