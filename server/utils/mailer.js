@@ -1,29 +1,30 @@
-const { Resend } = require('resend');
-
-// We use Resend instead of Nodemailer because Render blocks standard SMTP ports
-const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy');
-
+// We use Brevo's REST API instead of Nodemailer because Render blocks standard SMTP ports (25, 465, 587) on Free tiers.
 const transporter = {
   sendMail: async ({ from, to, subject, html }) => {
-    if (!process.env.RESEND_API_KEY) {
-      console.log(`[DEV MODE - No RESEND_API_KEY] Email not sent to ${to}. Subject: ${subject}`);
+    if (!process.env.SMTP_PASS) {
+      console.log(`[DEV MODE - No SMTP_PASS] Email not sent to ${to}. Subject: ${subject}`);
       return;
     }
 
-    // If using the default Resend testing key/domain, it MUST come from onboarding@resend.dev
-    // Otherwise it will fail.
-    const senderEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
-
-    const { data, error } = await resend.emails.send({
-      from: `Krevon Bank <${senderEmail}>`,
-      to: [to],
-      subject: subject,
-      html: html,
+    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'api-key': process.env.SMTP_PASS, // Brevo SMTP password is also the API key
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        sender: { name: "Krevon Bank", email: process.env.SMTP_USER },
+        to: [{ email: to }],
+        subject: subject,
+        htmlContent: html
+      })
     });
 
-    if (error) {
-      console.error('Resend API Error:', error);
-      throw new Error(`Failed to send email via Resend API: ${error.message}`);
+    if (!response.ok) {
+      const errorBody = await response.text();
+      console.error('Brevo API Error:', errorBody);
+      throw new Error(`Failed to send email via Brevo API: ${response.status} ${response.statusText}`);
     }
   }
 };
