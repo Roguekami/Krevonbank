@@ -1060,7 +1060,7 @@ const AdminDashboard = ({ tab }) => {
                     onChange={(e) => setCreditCurrency(e.target.value)}
                     className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent outline-none"
                   >
-                    {['USD','EUR','GBP','NGN','CAD','JPY','CHF','AUD'].map(c => (
+                    {['USD','EUR','GBP','NGN','CAD','JPY','CHF','AUD','BTC','ETH','USDT'].map(c => (
                       <option key={c} value={c}>{c}</option>
                     ))}
                   </select>
