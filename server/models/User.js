@@ -14,7 +14,7 @@ const createUser = async ({ fullName, email, password, country, verificationToke
 
 const findUserByEmail = async (email) => {
   const result = await pool.query(
-    `SELECT id, full_name, email, password_hash, country, phone_number, address, is_verified, kyc_status, is_admin, login_attempts, lock_until, submission_count_today, last_submission_date, reset_password_token, reset_password_expires, created_at FROM users WHERE email = $1`,
+    `SELECT id, full_name, email, password_hash, country, phone_number, address, is_verified, kyc_status, is_admin, is_suspended, login_attempts, lock_until, submission_count_today, last_submission_date, reset_password_token, reset_password_expires, created_at FROM users WHERE email = $1`,
     [email]
   );
   return result.rows[0];
@@ -22,7 +22,7 @@ const findUserByEmail = async (email) => {
 
 const findUserById = async (id) => {
   const result = await pool.query(
-    `SELECT id, full_name, email, country, phone_number, address, is_verified, kyc_status, is_admin, login_attempts, lock_until, submission_count_today, last_submission_date, created_at
+    `SELECT id, full_name, email, country, phone_number, address, is_verified, kyc_status, is_admin, is_suspended, login_attempts, lock_until, submission_count_today, last_submission_date, created_at
      FROM users WHERE id = $1`,
     [id]
   );
@@ -141,6 +141,24 @@ const updatePassword = async (userId, newPasswordHash) => {
   );
 };
 
+const getAllUsers = async () => {
+  const result = await pool.query(
+    `SELECT id, full_name, email, country, phone_number, is_verified, kyc_status, is_admin, is_suspended, created_at FROM users ORDER BY created_at DESC`
+  );
+  return result.rows;
+};
+
+const toggleSuspendUser = async (userId, isSuspended) => {
+  await pool.query(
+    `UPDATE users SET is_suspended = $1 WHERE id = $2`,
+    [isSuspended, userId]
+  );
+};
+
+const deleteUser = async (userId) => {
+  await pool.query(`DELETE FROM users WHERE id = $1`, [userId]);
+};
+
 module.exports = {
   createUser,
   findUserByEmail,
@@ -158,4 +176,7 @@ module.exports = {
   saveResetToken,
   findUserByResetToken,
   updatePassword,
+  getAllUsers,
+  toggleSuspendUser,
+  deleteUser,
 };

@@ -80,6 +80,7 @@ function App() {
                 <Route path="/admin/all-transactions" element={<AdminDashboard tab="all-transactions" />} />
                 <Route path="/admin/funding" element={<AdminDashboard tab="funding" />} />
                 <Route path="/admin/cards" element={<AdminDashboard tab="cards" />} />
+                <Route path="/admin/access-control" element={<AdminDashboard tab="access-control" />} />
               </Route>
             </Route>
           </Routes>

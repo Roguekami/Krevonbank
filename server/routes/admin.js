@@ -138,6 +138,43 @@ router.get('/users', protect, requireAdmin, async (req, res) => {
   }
 });
 
+// GET /api/admin/system-users - get all users in the system (for Access Control)
+router.get('/system-users', protect, requireAdmin, async (req, res) => {
+  try {
+    const { getAllUsers } = require('../models/User');
+    const users = await getAllUsers();
+    return res.status(200).json({ users });
+  } catch (error) {
+    console.error('Admin get system users error:', error);
+    return res.status(500).json({ message: 'Something went wrong.' });
+  }
+});
+
+// PUT /api/admin/system-users/:id/suspend - toggle suspension
+router.put('/system-users/:id/suspend', protect, requireAdmin, async (req, res) => {
+  try {
+    const { isSuspended } = req.body;
+    const { toggleSuspendUser } = require('../models/User');
+    await toggleSuspendUser(req.params.id, isSuspended);
+    return res.status(200).json({ message: `User ${isSuspended ? 'suspended' : 'unsuspended'} successfully.` });
+  } catch (error) {
+    console.error('Admin suspend user error:', error);
+    return res.status(500).json({ message: 'Something went wrong.' });
+  }
+});
+
+// DELETE /api/admin/system-users/:id - hard delete a user
+router.delete('/system-users/:id', protect, requireAdmin, async (req, res) => {
+  try {
+    const { deleteUser } = require('../models/User');
+    await deleteUser(req.params.id);
+    return res.status(200).json({ message: 'User deleted successfully.' });
+  } catch (error) {
+    console.error('Admin delete user error:', error);
+    return res.status(500).json({ message: 'Something went wrong.' });
+  }
+});
+
 // GET /api/admin/users/:id/statement — get all transactions in a date range for a specific user
 router.get('/users/:id/statement', protect, requireAdmin, async (req, res) => {
   try {

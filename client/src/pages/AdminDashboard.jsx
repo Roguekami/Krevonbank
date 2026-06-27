@@ -107,6 +107,8 @@ const AdminDashboard = ({ tab }) => {
     }
   };
 
+  const [systemUsersData, setSystemUsersData] = useState([]);
+
   const fetchHistory = async () => {
     try {
       const { data } = await api.get('/admin/transactions');
@@ -116,11 +118,20 @@ const AdminDashboard = ({ tab }) => {
     }
   };
 
+  const fetchSystemUsers = async () => {
+    try {
+      const { data } = await api.get('/admin/system-users');
+      setSystemUsersData(data.users || []);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const fetchAllData = async () => {
     setLoading(true);
     setError(null);
     try {
-      await Promise.all([fetchKYC(), fetchTransfers(), fetchUsers(), fetchFunding(), fetchBankFunding(), fetchCards(), fetchHistory()]);
+      await Promise.all([fetchKYC(), fetchTransfers(), fetchUsers(), fetchFunding(), fetchBankFunding(), fetchCards(), fetchHistory(), fetchSystemUsers()]);
     } catch (err) {
       setError('Failed to load dashboard data.');
     } finally {
@@ -194,6 +205,35 @@ const AdminDashboard = ({ tab }) => {
       fetchUsers();
     } catch (err) {
       setError(err.response?.data?.message || err.message);
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  const handleSystemUserSuspend = async (id, isSuspended) => {
+    setActionLoading(`sys-user-${id}`);
+    try {
+      await api.put(`/admin/system-users/${id}/suspend`, { isSuspended });
+      toast.success(`User ${isSuspended ? 'suspended' : 'unsuspended'} successfully.`);
+      fetchSystemUsers();
+    } catch (err) {
+      toast.error(err.response?.data?.message || err.message);
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  const handleSystemUserDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to completely delete this user and all their data? This cannot be undone.")) return;
+    
+    setActionLoading(`sys-user-${id}`);
+    try {
+      await api.delete(`/admin/system-users/${id}`);
+      toast.success('User deleted completely.');
+      fetchSystemUsers();
+      fetchUsers(); // Refresh accounts as well
+    } catch (err) {
+      toast.error(err.response?.data?.message || err.message);
     } finally {
       setActionLoading(null);
     }
@@ -376,6 +416,7 @@ const AdminDashboard = ({ tab }) => {
           {activeTab === 'users' && 'Manage Users'}
           {activeTab === 'funding' && 'Funding Requests'}
           {activeTab === 'cards' && 'Physical Cards'}
+          {activeTab === 'access-control' && 'Access Control'}
         </h2>
         <button 
           onClick={fetchAllData}
@@ -1044,6 +1085,99 @@ const AdminDashboard = ({ tab }) => {
                                       {actionLoading === `card-${item.id}` ? <Loader2 size={14} className="animate-spin" /> : <CheckCircle size={14} />}
                                       Confirm Delivered
                                     </button>
+                                  )}
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {activeTab === 'access-control' && (
+                <div className="space-y-4">
+                  <div className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
+                    <p className="text-sm text-gray-400">
+                      This page lists <strong>every</strong> registered user in the database, including unverified accounts and rejected KYC applications. You can suspend users to prevent them from logging in, or permanently delete their accounts and all associated data.
+                    </p>
+                  </div>
+                  {systemUsersData.length === 0 ? (
+                    <p className="text-center text-gray-600 dark:text-gray-500 py-12">No users found in the system.</p>
+                  ) : (
+                    <div className="overflow-x-auto bg-gray-50 dark:bg-[#0B1221] rounded-xl border border-white/5">
+                      <table className="w-full text-left border-collapse">
+                        <thead>
+                          <tr className="border-b border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 text-sm uppercase tracking-wider">
+                            <th className="p-4 font-medium">User</th>
+                            <th className="p-4 font-medium">Status</th>
+                            <th className="p-4 font-medium">Verification</th>
+                            <th className="p-4 font-medium text-right">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-800/50">
+                          {systemUsersData.map((sysUser) => (
+                            <tr key={sysUser.id} className="hover:bg-white/[0.02] transition-colors">
+                              <td className="p-4">
+                                <div className="font-medium text-gray-900 dark:text-white flex items-center gap-2">
+                                  {sysUser.full_name}
+                                  {sysUser.is_admin && <span className="bg-[#D4AF37]/20 text-[#D4AF37] px-2 py-0.5 rounded text-[10px] font-bold tracking-wider">ADMIN</span>}
+                                </div>
+                                <div className="text-xs text-gray-600 dark:text-gray-500">{sysUser.email}</div>
+                              </td>
+                              <td className="p-4">
+                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                  sysUser.is_suspended ? 'bg-red-500/10 text-red-500 border border-red-500/20' : 
+                                  'bg-green-500/10 text-green-400 border border-green-500/20'
+                                }`}>
+                                  {sysUser.is_suspended ? 'SUSPENDED' : 'ACTIVE'}
+                                </span>
+                              </td>
+                              <td className="p-4">
+                                <div className="text-xs space-y-1">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-gray-500 w-12">Email:</span>
+                                    <span className={sysUser.is_verified ? "text-green-400" : "text-yellow-500"}>
+                                      {sysUser.is_verified ? "Verified" : "Pending"}
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-gray-500 w-12">KYC:</span>
+                                    <span className={
+                                      sysUser.kyc_status === 'approved' ? "text-green-400" : 
+                                      sysUser.kyc_status === 'rejected' ? "text-red-400" : "text-yellow-500"
+                                    }>
+                                      {sysUser.kyc_status.toUpperCase()}
+                                    </span>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="p-4 text-right">
+                                <div className="flex justify-end gap-2">
+                                  {!sysUser.is_admin && (
+                                    <>
+                                      <button
+                                        onClick={() => handleSystemUserSuspend(sysUser.id, !sysUser.is_suspended)}
+                                        disabled={actionLoading === `sys-user-${sysUser.id}`}
+                                        className={`flex items-center justify-center w-24 py-1.5 rounded-lg text-xs font-medium transition-colors disabled:opacity-50 ${
+                                          sysUser.is_suspended 
+                                            ? 'bg-green-500/10 text-green-400 hover:bg-green-500/20' 
+                                            : 'bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20'
+                                        }`}
+                                      >
+                                        {actionLoading === `sys-user-${sysUser.id}` ? <Loader2 size={14} className="animate-spin" /> : (sysUser.is_suspended ? 'Unsuspend' : 'Suspend')}
+                                      </button>
+                                      
+                                      <button
+                                        onClick={() => handleSystemUserDelete(sysUser.id)}
+                                        disabled={actionLoading === `sys-user-${sysUser.id}`}
+                                        className="flex items-center justify-center w-20 py-1.5 bg-red-500/10 text-red-500 hover:bg-red-500/20 rounded-lg text-xs font-medium transition-colors disabled:opacity-50"
+                                      >
+                                        {actionLoading === `sys-user-${sysUser.id}` ? <Loader2 size={14} className="animate-spin" /> : 'Delete'}
+                                      </button>
+                                    </>
                                   )}
                                 </div>
                               </td>

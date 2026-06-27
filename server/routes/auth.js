@@ -122,6 +122,11 @@ router.post('/login', [
       return res.status(401).json({ message: 'Invalid email or password.' });
     }
 
+    // Check if account is permanently suspended by admin
+    if (user.is_suspended) {
+      return res.status(403).json({ message: 'Your account has been suspended by an administrator.' });
+    }
+
     // Check if account is locked
     if (user.lock_until && new Date(user.lock_until) > new Date()) {
       return res.status(403).json({ message: 'Your account is temporarily locked. Please try again later or contact support.' });

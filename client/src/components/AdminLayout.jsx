@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
-import { Users, FileCheck, DollarSign, Activity, CreditCard, LogOut, Menu, X, History, Sun, Moon } from 'lucide-react';
+import { Users, FileCheck, DollarSign, Activity, CreditCard, LogOut, Menu, X, History, Sun, Moon, Shield } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import { ThemeContext } from '../context/ThemeContext';
 import api from '../services/api';
@@ -21,6 +21,7 @@ const AdminLayout = () => {
   };
 
   const navItems = [
+    { name: 'Access Control', path: '/admin/access-control', icon: Shield },
     { name: 'User Management', path: '/admin', icon: Users },
     { name: 'KYC Reviews', path: '/admin/kyc', icon: FileCheck },
     { name: 'Funding Requests', path: '/admin/funding', icon: DollarSign },
