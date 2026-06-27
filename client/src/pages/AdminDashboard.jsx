@@ -659,11 +659,25 @@ const AdminDashboard = ({ tab }) => {
                             </span>
                           </div>
 
-                          <div className="mb-4 pt-4 border-t border-gray-200 dark:border-gray-800">
-                            <div className="text-sm text-gray-600 dark:text-gray-400">Account Balance ({user.default_currency || 'USD'})</div>
-                            <div className="text-xl font-mono text-[#D4AF37] font-semibold">
-                              ${parseFloat(user.balances?.[0]?.balance || 0).toLocaleString(undefined, {minimumFractionDigits: 2})}
-                            </div>
+                          <div className="mb-4 pt-4 border-t border-gray-200 dark:border-gray-800 space-y-2">
+                            <div className="text-sm text-gray-600 dark:text-gray-400">Account Balances</div>
+                            {user.balances && user.balances.length > 0 ? (
+                              <div className="flex flex-col gap-1">
+                                {user.balances.map((b, idx) => (
+                                  <div key={idx} className="flex justify-between items-center text-sm font-mono bg-gray-50 dark:bg-[#0B1221] px-3 py-1.5 rounded">
+                                    <span className="text-gray-500 dark:text-gray-400">{b.currency_code}</span>
+                                    <span className="text-[#D4AF37] font-semibold">
+                                      {parseFloat(b.balance).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 8 })}
+                                    </span>
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <div className="flex justify-between items-center text-sm font-mono bg-gray-50 dark:bg-[#0B1221] px-3 py-1.5 rounded">
+                                <span className="text-gray-500 dark:text-gray-400">USD</span>
+                                <span className="text-[#D4AF37] font-semibold">0.00</span>
+                              </div>
+                            )}
                           </div>
 
                           <div className="flex gap-2">
