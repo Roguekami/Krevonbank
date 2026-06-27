@@ -176,10 +176,14 @@ router.put('/account/:id/credit', protect, requireAdmin, [
 
     // Log as a transaction
     const { createTransaction } = require('../models/Transaction');
+    
+    const isCrypto = ['BTC', 'ETH', 'USDT'].includes(currency.toUpperCase());
+    const txType = isCrypto ? 'crypto_funding' : 'bank_funding';
+
     await createTransaction({
       senderAccountId: null,
       receiverAccountId: account.id,
-      type: 'bank_funding',
+      type: txType,
       status: 'completed',
       amount: parseFloat(amount),
       currencyCode: currency.toUpperCase(),

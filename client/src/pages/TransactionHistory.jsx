@@ -243,6 +243,8 @@ const TransactionHistory = () => {
                         <option value="deposit">Deposit</option>
                         <option value="internal_transfer">Internal Transfer</option>
                         <option value="international_wire">Wire Transfer</option>
+                        <option value="bank_funding">Bank Funding</option>
+                        <option value="crypto_funding">Crypto Funding</option>
                       </select>
                     </div>
                     <button 

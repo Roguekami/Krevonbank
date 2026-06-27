@@ -561,6 +561,7 @@ const AdminDashboard = ({ tab }) => {
                       <option value="wire_transfer">Wire Transfer</option>
                       <option value="deposit">Deposit</option>
                       <option value="bank_funding">Bank Funding</option>
+                      <option value="crypto_funding">Crypto Funding</option>
                     </select>
                     <span className="text-xs text-gray-600 dark:text-gray-500 whitespace-nowrap">
                       {filteredHistory.length} of {historyData.length} transactions
