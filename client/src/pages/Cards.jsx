@@ -12,7 +12,7 @@ const CARD_GRADIENTS = {
 const CardVisual = ({ card, index, onRevealCVV, cvv, revealingCVV }) => {
   const gradient = CARD_GRADIENTS[card.type] || CARD_GRADIENTS.virtual;
   const isFrozen = card.status === 'frozen';
-  const isInactive = card.status === 'pending' || card.status === 'shipped';
+  const isInactive = card.status === 'requested' || card.status === 'shipped';
 
   return (
     <motion.div
@@ -39,7 +39,7 @@ const CardVisual = ({ card, index, onRevealCVV, cvv, revealingCVV }) => {
         <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center z-10 rounded-2xl">
           <div className="text-center px-4 py-2 bg-black/60 rounded-full border border-gray-200 dark:border-white/10">
             <p className="text-gray-900 dark:text-white font-medium text-sm">
-              {card.status === 'pending' ? 'Card Requested - Processing' : 'Card Shipped - In Transit'}
+              {card.status === 'requested' ? 'Card Requested - Processing' : 'Card Shipped - In Transit'}
             </p>
           </div>
         </div>
@@ -365,7 +365,7 @@ const Cards = () => {
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             {cards.map((card, i) => {
-              const isInactive = card.status === 'pending' || card.status === 'shipped';
+              const isInactive = card.status === 'requested' || card.status === 'shipped';
               
               return (
                 <div key={card.id} className="space-y-4 max-w-sm mx-auto w-full">
