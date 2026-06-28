@@ -1055,7 +1055,7 @@ const AdminDashboard = ({ tab }) => {
                               </td>
                               <td className="p-4">
                                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                  item.status === 'requested' ? 'bg-yellow-500/10 text-yellow-500 border border-yellow-500/20' : 
+                                  item.status === 'pending' ? 'bg-yellow-500/10 text-yellow-500 border border-yellow-500/20' : 
                                   'bg-blue-500/10 text-blue-400 border border-blue-500/20'
                                 }`}>
                                   {item.status.toUpperCase()}
@@ -1066,7 +1066,7 @@ const AdminDashboard = ({ tab }) => {
                               </td>
                               <td className="p-4 text-right">
                                 <div className="flex justify-end gap-2">
-                                  {item.status === 'requested' && (
+                                  {item.status === 'pending' && (
                                     <button
                                       onClick={() => handleCardShip(item.id)}
                                       disabled={actionLoading === `card-${item.id}`}
