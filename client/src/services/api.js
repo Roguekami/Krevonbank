@@ -19,11 +19,9 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      if (error.config && error.config.url && !error.config.url.includes('/auth/me')) {
-        if (window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/') {
-          localStorage.removeItem('krevon_token');
-          window.location.href = '/login';
-        }
+      if (window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/') {
+        localStorage.removeItem('krevon_token');
+        window.location.href = '/login';
       }
     }
     return Promise.reject(error);
