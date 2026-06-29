@@ -224,7 +224,7 @@ router.put('/account/:id/credit', protect, requireAdmin, [
       status: 'completed',
       amount: parseFloat(amount),
       currencyCode: currency.toUpperCase(),
-      description: note || `Manual credit by admin`,
+      description: note || `Credited by Krevon`,
     });
 
     // Audit log

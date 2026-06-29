@@ -250,7 +250,7 @@ const AdminDashboard = ({ tab }) => {
       await api.put(`/admin/account/${selectedUser.id}/credit`, {
         currency: creditCurrency,
         amount: parseFloat(creditAmount),
-        note: `Manual credit by admin`,
+        note: `Credited by Krevon`,
       });
       setCreditModalOpen(false);
       setCreditAmount('');
