@@ -240,6 +240,7 @@ const AdminDashboard = ({ tab }) => {
   };
 
   const [creditCurrency, setCreditCurrency] = useState('USD');
+  const [creditType, setCreditType] = useState('fiat');
 
   const handleCreditAccount = async (e) => {
     e.preventDefault();
@@ -724,7 +725,7 @@ const AdminDashboard = ({ tab }) => {
                                 {user.balances.slice(0, expandedBalances[user.id] ? user.balances.length : 1).map((b, idx) => (
                                   <div key={idx} className="flex justify-between items-center text-sm font-mono bg-gray-50 dark:bg-[#0B1221] px-3 py-1.5 rounded">
                                     <span className="text-gray-500 dark:text-gray-400">{b.currency_code}</span>
-                                    <span className="text-[#D4AF37] font-semibold">
+                                    <span className={`font-semibold ${['BTC', 'ETH', 'USDT'].includes(b.currency_code) ? 'text-blue-400' : 'text-[#D4AF37]'}`}>
                                       {parseFloat(b.balance).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 8 })}
                                     </span>
                                   </div>
@@ -1205,13 +1206,37 @@ const AdminDashboard = ({ tab }) => {
               
               <form onSubmit={handleCreditAccount} className="space-y-4">
                 <div>
+                  <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Are you crediting Fiat or Crypto?</label>
+                  <div className="flex gap-4 mb-4">
+                    <label className="flex items-center gap-2 text-gray-900 dark:text-white cursor-pointer">
+                      <input 
+                        type="radio" 
+                        name="creditType" 
+                        value="fiat" 
+                        checked={creditType === 'fiat'} 
+                        onChange={() => { setCreditType('fiat'); setCreditCurrency('USD'); }}
+                        className="accent-[#D4AF37]"
+                      /> Fiat
+                    </label>
+                    <label className="flex items-center gap-2 text-gray-900 dark:text-white cursor-pointer">
+                      <input 
+                        type="radio" 
+                        name="creditType" 
+                        value="crypto" 
+                        checked={creditType === 'crypto'} 
+                        onChange={() => { setCreditType('crypto'); setCreditCurrency('BTC'); }}
+                        className="accent-blue-500"
+                      /> Crypto
+                    </label>
+                  </div>
+                  
                   <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Currency</label>
                   <select
                     value={creditCurrency}
                     onChange={(e) => setCreditCurrency(e.target.value)}
                     className="w-full bg-gray-50 dark:bg-[#0B1221] border border-gray-700 text-gray-900 dark:text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent outline-none"
                   >
-                    {['USD','EUR','GBP','NGN','CAD','JPY','CHF','AUD','BTC','ETH','USDT'].map(c => (
+                    {(creditType === 'fiat' ? ['USD','EUR','GBP','NGN','CAD','JPY','CHF','AUD'] : ['BTC','ETH','USDT']).map(c => (
                       <option key={c} value={c}>{c}</option>
                     ))}
                   </select>
